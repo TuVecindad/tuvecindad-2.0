@@ -6,8 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use Notifiable;
 
     /**
@@ -15,8 +15,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    //clave
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'name', 'nif', 'name', 'surname1', 'surname2', 'phone1', 'phone2', 'password'
     ];
 
     /**
@@ -25,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','updated_at','created_at',
     ];
 
     /**
@@ -36,4 +38,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }
