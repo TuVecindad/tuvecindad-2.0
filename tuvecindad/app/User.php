@@ -6,13 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-<<<<<<< HEAD
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-=======
-class User extends Authenticatable {
-
->>>>>>> a6f4d6aaf9e258ef3d97b5a3f0e68a16c2bce086
     use Notifiable;
 
     /**
@@ -20,10 +15,8 @@ class User extends Authenticatable {
      *
      * @var array
      */
-    //clave
-    protected $primaryKey = 'id';
     protected $fillable = [
-        'email', 'name', 'nif', 'name', 'surname1', 'surname2', 'phone1', 'phone2', 'password'
+        'name', 'email', 'password',
     ];
 
     /**
@@ -32,7 +25,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','updated_at','created_at',
+        'password', 'remember_token',
     ];
 
     /**
@@ -43,5 +36,4 @@ class User extends Authenticatable {
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
 }
