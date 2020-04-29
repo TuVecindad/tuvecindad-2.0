@@ -22,14 +22,17 @@ class PropertyMigration extends Migration {
             $table->integer('house_id')->unsigned();
             $table->integer('parking_id')->unsigned();
             $table->integer('storage_id')->unsigned();
-             //claves foránea dentro de la tabla property y las tablas que apuntan
+            $table->timestamps();
+        });
+
+        Schema::table('property', function (Blueprint $table) {
+            //claves foránea dentro de la tabla property y las tablas que apuntan
             $table->foreign('com_id')->references('id')->on('communities');
             $table->foreign('owner')->references('id')->on('users');
             $table->foreign('tenant')->references('id')->on('users');
             $table->foreign('house_id')->references('id')->on('pro_house');
             $table->foreign('parking_id')->references('id')->on('pro_parking');
             $table->foreign('storage_id')->references('id')->on('pro_storage');
-            $table->timestamps();
         });
     }
 

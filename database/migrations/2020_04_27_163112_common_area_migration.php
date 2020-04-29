@@ -23,13 +23,14 @@ class CommonAreaMigration extends Migration {
             $table->boolean('hall');
             $table->boolean('rooftop');
             $table->boolean('garden');
-            
-            //clave foránea
-             $table->foreign('com_id')->references('id')->on('communities');
-               
-
             //updated y created
             $table->timestamps();
+        });
+        
+         Schema::table('common_area', function (Blueprint $table) {
+            //claves foránea dentro de la tabla bulletin y las tablas que apuntan
+            $table->foreign('com_id')->references('id')->on('communities');
+            
         });
     }
 

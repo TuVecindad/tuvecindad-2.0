@@ -19,11 +19,13 @@ class BulletinMigration extends Migration {
             $table->integer('com_id')->unsigned();
             //clave foránea de tabla users
             $table->integer('user_id')->unsigned();
-            //claves foránea dentro de la tabla bulletin y las tablas que apuntan
-            $table->foreign('com_id')->references('id')->on('communities');
-            $table->foreign('user_id')->references('id')->on('users');   
             //genera automáticamente los campos (created_at, updated_at)
             $table->timestamps();
+        });
+        Schema::table('bulletin', function (Blueprint $table) {
+            //claves foránea dentro de la tabla bulletin y las tablas que apuntan
+            $table->foreign('com_id')->references('id')->on('communities');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
