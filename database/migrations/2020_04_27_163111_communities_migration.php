@@ -14,7 +14,7 @@ class CommunitiesMigration extends Migration
     public function up()
     {
         Schema::create('communities', function (Blueprint $table) {
-          $table->increments('id');
+       $table->bigIncrements('id');
           $table->string('cad_ref_com');
           $table->string('address');
           $table->integer('apart_num');

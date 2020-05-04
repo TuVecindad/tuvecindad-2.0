@@ -13,7 +13,7 @@ class ProHouseMigration extends Migration {
      */
     public function up() {
         Schema::create('pro_house', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('floor');
             $table->string('door');
             //metros cuadrados por superficie

@@ -13,7 +13,7 @@ class ProParkingMigration extends Migration {
      */
     public function up() {
         Schema::create('pro_parking', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             //metros cuadrados por superficie
             $table->integer('sqm');
             $table->timestamps();
