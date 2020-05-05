@@ -13,21 +13,17 @@ class CommonAreaMigration extends Migration {
      */
     public function up() {
         Schema::create('common_area', function (Blueprint $table) {
-
+            $table->bigIncrements('id');
             //clave primaria por defecto en esta tabla el incremental esta a false 
             //ya que esta relacionada con la tabla communities
-            $table->integer('com_id')->unsigned();
+
+            $table->unsignedBigInteger('com_id');
             //zonas comunes
             $table->boolean('pool');
             $table->boolean('gym');
             $table->boolean('hall');
             $table->boolean('rooftop');
             $table->boolean('garden');
-            
-            //clave foránea
-             $table->foreign('com_id')->references('id')->on('communities');
-               
-
             //updated y created
             $table->timestamps();
         });

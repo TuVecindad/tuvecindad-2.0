@@ -13,14 +13,14 @@ class UsersCommunityMigration extends Migration {
      */
     public function up() {
         Schema::create('users_community', function (Blueprint $table) {
-            //claves primarias compuestas
-            $table->integer('user_id')->unsigned();
-            $table->integer('com_id')->unsigned();
-            $table->string('permissions');
-            //claves foránea dentro de la tabla bulletin y las tablas que apuntan
-            $table->foreign('com_id')->references('id')->on('communities');
-            $table->foreign('user_id')->references('id')->on('users');  
-            
+            $table->bigIncrements('id');
+            //clave foránea de tabla comunidad
+            $table->unsignedBigInteger('com_id');
+            //clave foránea de tabla users
+            $table->unsignedBigInteger('user_id');
+            //claves foranea permissions
+            $table->unsignedBigInteger('permissions_id');
+//            $table->string('permissions_id')->unsigned();
             //created updated
             $table->timestamps();
         });

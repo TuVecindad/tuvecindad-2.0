@@ -13,7 +13,8 @@ class PermissionsMigration extends Migration {
      */
     public function up() {
         Schema::create('permissions', function (Blueprint $table) {
-            $table->string('id');
+//            $table->string('id');
+            $table->bigIncrements('id');
             $table->boolean('add_user');
             $table->boolean('del_user');
 
