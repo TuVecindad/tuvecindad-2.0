@@ -5,6 +5,7 @@
 </head>
 
 <body>
+    @include('includes.logout')
     <div class="container-fluid h-auto">
         <div class="row bg-dark align-items-center sticky-top">
             @include('includes.header')
