@@ -1,5 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+
+@media (max-width: 590px) {
+  #mobile-logo {
+    text-align: center !important;
+  }
+
+  #mobile-login {
+    justify-content: space-around !important;
+  }
+}
+
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
