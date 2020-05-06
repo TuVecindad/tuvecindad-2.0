@@ -4,22 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property int $user_id
- * @property int $com_id
- * @property string $permissions
- * @property User $user
- * @property Permission $permission
- * @property Community $community
- */
-class UserComu extends Model
+class UserProp extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'users_community';
+    protected $table = 'users_property';
 
     /**
      * @var array
@@ -39,14 +31,14 @@ class UserComu extends Model
      */
     public function permission()
     {
-        return $this->belongsTo('App\Permission', 'permissions');
+        return $this->belongsTo('App\Permission', 'permiss_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function community()
+    public function property()
     {
-        return $this->belongsTo('App\Community', 'com_id');
+        return $this->belongsTo('App\Property', 'prop_id');
     }
 }
