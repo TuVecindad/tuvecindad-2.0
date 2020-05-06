@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
-use App\Http\Controllers\Mail;
+use App\Mail\VerifyMail;
+use App\VerifyUser;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -77,13 +79,46 @@ class RegisterController extends Controller
   $user = User::create([
     'name' => $data['name'],
     'email' => $data['email'],
-    'password' => bcrypt($data['password']),
+    'password' => Hash::make($data['password']),
   ]);
   $verifyUser = VerifyUser::create([
     'user_id' => $user->id,
     'token' => sha1(time())
   ]);
-  Mail::to($user->email)->send(new VerifyMail($user));
+  
+  \Mail::to($user->email)->send(new VerifyMail($user));
   return $user;
 }
+public function verifyUser($token)
+{
+  $verifyUser = VerifyUser::where('token', $token)->first();
+  if(isset($verifyUser) ){
+    $user = $verifyUser->user;
+    if(!$user->verified) {
+      $verifyUser->user->verified = 1;
+      $verifyUser->user->save();
+      $status = "Your e-mail is verified. You can now login.";
+    } else {
+      $status = "Your e-mail is already verified. You can now login.";
+    }
+  } else {
+    return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+  }
+  return redirect('/login')->with('status', $status);
 }
+public function authenticated(Request $request, $user)
+{
+  if (!$user->verified) {
+    auth()->logout();
+    return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+  }
+  return redirect()->intended($this->redirectPath());
+}
+
+protected function registered(Request $request, $user)
+{
+  $this->guard()->logout();
+  return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+}
+}
+
