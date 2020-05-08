@@ -82,7 +82,7 @@ class RegisterController extends Controller
     'password' => Hash::make($data['password']),
   ]);
   $verifyUser = VerifyUser::create([
-    'user_id' => $user->id,
+    'id' => $user->id,
     'token' => sha1(time())
   ]);
   
