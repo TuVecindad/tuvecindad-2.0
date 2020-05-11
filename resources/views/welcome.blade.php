@@ -10,6 +10,9 @@
         <div class="row bg-dark align-items-center sticky-top">
             @include('includes.header')
         </div>
+     <div class="row ">
+            @include('includes.comunidades.create')
+        </div>
 
         <div class="row fixed-bottom bg-dark">
             @include('includes.footer')
