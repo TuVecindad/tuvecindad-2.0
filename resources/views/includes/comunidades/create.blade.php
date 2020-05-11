@@ -6,7 +6,7 @@
                 <div class="card-header">{{ __('Crear comunidad') }}</div>
 
                 <div class="card-body">
-                    <form method="GET" action="{{ route('comunidades.create') }}">
+                    <form method="GET" action="{{ route('includes.comunidades.create') }}">
                         @csrf
 
                         <div class="form-group row">
