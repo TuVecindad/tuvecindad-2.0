@@ -1,4 +1,4 @@
-<div id="mobile-logo" class="col-md-2">
+<div id="mobile-logo" class="col-md-2 pl-4">
     <a href="#">
         <img class="m-2" src="{{ asset('images/logo.png') }}" height="49px" width="50px">
     </a>
@@ -13,7 +13,7 @@
         @if (Route::has('login'))
 
         @auth
-        <a class="navbar-brand p-0" href="{{ url('/home') }}">Dashboard</a>
+        <a class="navbar-brand p-0" href="{{ url('/dashboard') }}">Dashboard</a>
 
         <a class="navbar-brand p-0" href="{{ route('logout') }}"  data-toggle="modal" data-target="#exampleModal">
             {{ __('Logout') }}
