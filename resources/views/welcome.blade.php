@@ -5,17 +5,17 @@
 </head>
 
 <body>
-    @include('includes.logout')
-    <div class="container-fluid h-auto">
-        <div class="row bg-dark align-items-center sticky-top">
+    <div class="container-fluid h-auto p-0">
+        <div class="row bg-dark align-items-center m-0 sticky-top">
             @include('includes.header')
         </div>
-
-        <div class="row fixed-bottom bg-dark">
+        <div>
+        
+        </div>
+        <div class="row bottom bg-dark m-0">
             @include('includes.footer')
         </div>
     </div>
-
 </body>
 
 </html>
