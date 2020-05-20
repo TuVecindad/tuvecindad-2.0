@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CommonArea;
 
-class CommonAreaController extends Controller
-{
+class CommonAreaController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -22,8 +21,7 @@ class CommonAreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +31,7 @@ class CommonAreaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,8 +41,7 @@ class CommonAreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -55,9 +51,11 @@ class CommonAreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        //mofica el area común de una comunidad
+        $common = Show::findOrFail($id);
+
+        return view('common.update', compact('common'));
     }
 
     /**
@@ -67,9 +65,19 @@ class CommonAreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
+        $validatedData = $request->validate([
+            'comunidad' => 'required|max:255',
+            'piscina' => 'required|numeric',
+            'gym' => 'required|numeric',
+            'hall' => 'required|numeric',
+            'azotea' => 'required|numeric',
+            'jardin' => 'required|numeric',
+        ]);
+        Show::whereId($id)->update($validatedData);
+
+        return redirect('/common')->with('success', 'Show is successfully updated');
     }
 
     /**
@@ -78,8 +86,8 @@ class CommonAreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

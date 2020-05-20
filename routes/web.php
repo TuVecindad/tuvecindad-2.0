@@ -22,4 +22,6 @@ Route::get('/dashboard', function () {
 });
 
 Auth::routes(['verify' => true]);
+//common area
+Route::resource('commonarea','CommonAreaController');
 
