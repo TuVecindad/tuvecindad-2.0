@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Permissions;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,7 +66,7 @@ use RegistersUsers;
      * @return \App\User
      */
     protected function create(array $data) {
-        return User::create([
+        $user = User::create([
                     'name' => $data['name'],
                     'surname1' => $data['surname1'],
                     'surname2' => $data['surname2'],
@@ -75,6 +76,8 @@ use RegistersUsers;
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
         ]);
+        $user->roles()->attach(Permissions::where('name', 'user')->first());
+        return $user;
     }
 
 }

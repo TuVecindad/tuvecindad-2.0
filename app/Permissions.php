@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -37,5 +38,9 @@ class Permissions extends Model
     public function usersCommunities()
     {
         return $this->hasMany('App\UsersCommunity', 'permissions');
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }
