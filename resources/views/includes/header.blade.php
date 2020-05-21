@@ -1,19 +1,19 @@
-<div id="mobile-logo" class="col-md-2 pl-4">
-    <a href="#">
+<div id="mobile-logo" class="col-md-1 pl-4 text-center">
+    <a href="{{ url('/') }}">
         <img class="m-2" src="{{ asset('images/logo.png') }}" height="49px" width="50px">
     </a>
 </div>
-<div class="offset-md-3 col-md-2">
+<div class="offset-md-4 col-md-2">
     <h3 class="text-light text-center m-auto">
         {{ config('app.name') }}
     </h3>
 </div>
-<div class="offset-md-2 col-md-3">
-    <nav id="mobile-login" class="navbar navbar-dark justify-content-end">
+<div class="offset-md-3 col-md-2 text-center">
+    <nav id="mobile-login" class="navbar navbar-dark justify-content-around">
         @if (Route::has('login'))
 
         @auth
-        <a class="navbar-brand p-0" href="{{ url('/dashboard') }}">Dashboard</a>
+        <a class="navbar-brand p-0" href="{{ url('/update') }}">Dashboard</a>
 
         <a class="navbar-brand p-0" href="{{ route('logout') }}"  data-toggle="modal" data-target="#exampleModal">
             {{ __('Logout') }}

@@ -10,12 +10,13 @@
             @include('includes.header')
         </div>
         <div>
-        
+
         </div>
         <div class="row bottom bg-dark m-0">
             @include('includes.footer')
         </div>
     </div>
+    @include('includes.logout')
 </body>
 
 </html>
