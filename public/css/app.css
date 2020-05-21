@@ -10882,3 +10882,23 @@ a.text-dark:focus {
   }
 }
 
+
+.sticky{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.scroll-card {
+  margin-bottom: 5em;
+}
+
+@media (max-width: 576px) {
+  #scroll, .overflow-hidden {
+    overflow: visible !important;
+  }
+
+  .scroll-card {
+    margin-bottom: 2em;
+  }
+}
