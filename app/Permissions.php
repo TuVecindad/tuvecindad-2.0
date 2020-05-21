@@ -30,7 +30,7 @@ class Permissions extends Model
     /**
      * @var array
      */
-    protected $fillable = ['add_user', 'del_user'];
+    //protected $fillable = ['add_user', 'del_user'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -43,4 +43,5 @@ class Permissions extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
 }

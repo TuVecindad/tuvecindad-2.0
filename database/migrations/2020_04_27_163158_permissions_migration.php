@@ -16,8 +16,9 @@ class PermissionsMigration extends Migration {
 
             $table->bigIncrements('id');
             $table->string('role'); //admin, owner, tenant
-            $table->boolean('add_user');
-            $table->boolean('del_user');
+            $table->string('description');
+            // $table->boolean('add_user');
+            // $table->boolean('del_user');
 
             //created y updated
             $table->timestamps();
