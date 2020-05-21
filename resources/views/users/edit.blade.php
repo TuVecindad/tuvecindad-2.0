@@ -51,28 +51,7 @@
                 <label for="phone2">Phone 2:</label>
                 <input type="tel" class="form-control" name="phone2" value="{{ $user->phone2 }}" />
             </div>
-            <!--  -->
-            <div class="form-group">
-                <label for="surname1">Surname 1:</label>
-                <input type="text" class="form-control" name="surname1" value="{{ $user->surname1 }}" />
-            </div>
-            <div class="form-group">
-                <label for="surname2">Surname 2:</label>
-                <input type="text" class="form-control" name="surname2" value="{{ $user->surname2 }}" />
-            </div>
-            <div class="form-group">
-                <label for="nif">Nif:</label>
-                <input type="text" class="form-control" name="nif" value="{{ $user->nif }}" />
-            </div>
-            <div class="form-group">
-                <label for="phone1">Phone 1:</label>
-                <input type="tel" class="form-control" name="phone1" value="{{ $user->phone1 }}" />
-            </div>
-            <div class="form-group">
-                <label for="phone2">Phone 2:</label>
-                <input type="tel" class="form-control" name="phone2" value="{{ $user->phone2 }}" />
-            </div>
-            <!--  -->
+
             <button type="submit" class="btn btn-primary">Update user</button>
         </form>
     </div>
