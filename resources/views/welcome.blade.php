@@ -11,7 +11,7 @@
             @include('includes.header')
         </div>
      <div class="row ">
-            @include('includes.comunidades.create')
+            @include('common.update')
         </div>
 
         <div class="row fixed-bottom bg-dark">

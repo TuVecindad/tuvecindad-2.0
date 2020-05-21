@@ -53,7 +53,7 @@ class CommonAreaController extends Controller {
      */
     public function edit($id) {
         //mofica el area común de una comunidad
-        $common = Show::findOrFail($id);
+        $common = CommonArea::findOrFail($id);
 
         return view('common.update', compact('common'));
     }
@@ -75,9 +75,9 @@ class CommonAreaController extends Controller {
             'azotea' => 'required|numeric',
             'jardin' => 'required|numeric',
         ]);
-        Show::whereId($id)->update($validatedData);
+        CommonArea::whereId($id)->update($validatedData);
 
-        return redirect('/common')->with('success', 'Show is successfully updated');
+        return redirect('/commonarea')->with('success', 'Show is successfully updated');
     }
 
     /**
