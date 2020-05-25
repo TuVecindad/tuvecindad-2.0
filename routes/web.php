@@ -25,3 +25,4 @@ Auth::routes(['verify' => true]);
 //common area
 Route::resource('commonarea','CommonAreaController');
 
+Route::resource('property','PropertyController');

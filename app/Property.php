@@ -61,7 +61,7 @@ class Property extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user_tenant()
     {
         return $this->belongsTo('App\User', 'tenant');
     }
@@ -69,7 +69,7 @@ class Property extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user_owner()
     {
         return $this->belongsTo('App\User', 'owner');
     }

@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Property;
 
-class PropertyController extends Controller
-{
+class PropertyController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+//se configura un paginador
+        $properties = Property::latest()->paginate(5);
+
+        return view('property.index', compact('properties'))
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -22,9 +25,9 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+//crea una nueva propiedad
+        return view('property.create');
     }
 
     /**
@@ -33,9 +36,16 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+//almacena la propiedad
+        $request->validate([
+            'cad_ref_pro' => 'required',
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('property.index')
+                        ->with('success', 'Property created successfully.');
     }
 
     /**
@@ -44,9 +54,9 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Property $id) {
+//muestra las propiedades
+        return view('property.show', compact('id'));
     }
 
     /**
@@ -55,9 +65,9 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Property $id) {
+//modifica la propipedad
+        return view('property.edit', compact('id'));
     }
 
     /**
@@ -67,9 +77,16 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, Property $id) {
+//actualiza la propiedad
+        $request->validate([
+            'cad_ref_pro' => 'required',
+        ]);
+
+        $product->update($request->all());
+
+        return redirect()->route('property.index')
+                        ->with('success', 'Property updated successfully');
     }
 
     /**
@@ -78,8 +95,12 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Property $id) {
+        //elimina una propiedad
+        $product->delete();
+
+        return redirect()->route('property.index')
+                        ->with('success', 'Property deleted successfully');
     }
+
 }
