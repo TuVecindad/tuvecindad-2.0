@@ -21,6 +21,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::resource('dashboard', 'DashboardController');
+
 Route::resource('users', 'UsersController');
 
 Auth::routes(['verify' => true]);
