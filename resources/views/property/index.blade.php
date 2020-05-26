@@ -22,9 +22,9 @@
     <table class="table table-bordered">
         <tr>
             <th>Propiedad</th>
-            <th>Nº Registro Catastral</th>
+            <td>Nº Registro Catastral</td>
     
-            <th width="280px">Action</th>
+<!--            <th width="280px">Action</th>-->
         </tr>
         @foreach ($properties as $property)
         <tr>
