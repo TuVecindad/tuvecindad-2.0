@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
 Route::resource('users', 'UsersController');
 
 Auth::routes(['verify' => true]);
