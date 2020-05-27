@@ -1,11 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-@if(session()->get('success'))
-<div class="alert alert-success">
-    {{ session()->get('success') }}
-</div><br />
-@endif
 <div class="card scroll-card">
     <div class="card-header">
         Update user
@@ -18,6 +13,10 @@
                 <li>{{ $error }}</li>
                 @endforeach
             </ul>
+        </div><br />
+        @elseif(session()->get('success'))
+        <div class="alert alert-success mb-0">
+            {{ session()->get('success') }}
         </div><br />
         @endif
         <form method="post" action="{{ route('users.update', $user->id) }}">

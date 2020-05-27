@@ -10893,6 +10893,10 @@ a.text-dark:focus {
   margin-bottom: 5em;
 }
 
+.table > tbody > tr > td, .delete {
+  vertical-align: middle;
+}
+
 @media (max-width: 576px) {
   #scroll, .overflow-hidden {
     overflow: visible !important;
@@ -10900,5 +10904,9 @@ a.text-dark:focus {
 
   .scroll-card {
     margin-bottom: 2em;
+  }
+
+  #pagination {
+    justify-content: center;
   }
 }

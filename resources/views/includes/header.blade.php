@@ -13,7 +13,7 @@
         @if (Route::has('login'))
 
         @auth
-        <a class="navbar-brand p-0" href="{{ url('/update') }}">Dashboard</a>
+        <a class="navbar-brand p-0" href="{{ route('users.edit', Auth::id()) }}">Dashboard</a>
 
         <a class="navbar-brand p-0" href="{{ route('logout') }}"  data-toggle="modal" data-target="#exampleModal">
             {{ __('Logout') }}
