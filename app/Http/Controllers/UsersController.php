@@ -16,7 +16,7 @@ class UsersController extends Controller
     {
         $users = User::all();
 
-        return view('users.index', compact('users'));
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('dashboard.users.create');
     }
 
     /**
@@ -68,7 +68,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('users.edit', compact('user'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     /**

@@ -17,12 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-//Route::resource('dashboard', 'DashboardController');
-
 Route::resource('users', 'UsersController');
+
+Route::resource('communities', 'CommunityController');
 
 Auth::routes(['verify' => true]);
