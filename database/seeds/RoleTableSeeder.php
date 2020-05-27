@@ -1,26 +1,27 @@
 <?php
 
-use App\Permissions;
 use Illuminate\Database\Seeder;
+use App\Role;
 
-class PermissionTableSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
+
     public function run()
     {
-        $role = new Permissions();
+        $role = new Role();
         $role->role = 'admin';
         $role->description = 'Administrator';
         $role->save();
-        $role = new Permissions();
+        $role = new Role();
         $role->role = 'owner';
         $role->description = 'Owner';
         $role->save();
-        $role = new Permissions();
+        $role = new Role();
         $role->role = 'tennant';
         $role->description = 'Tennant';
         $role->save();

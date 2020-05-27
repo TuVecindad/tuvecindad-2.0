@@ -12,7 +12,7 @@ class DashboardController extends Controller
     }
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['owner', 'admin']);
+        $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
         return view('dashboard');
     }
 }

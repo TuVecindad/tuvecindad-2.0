@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::resource('dashboard', 'DashboardController');
+//Route::resource('dashboard', 'DashboardController');
 
 Route::resource('users', 'UsersController');
 

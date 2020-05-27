@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Permissions;
+use App\Role;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -76,7 +76,7 @@ use RegistersUsers;
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
         ]);
-        $user->roles()->attach(Permissions::where('name', 'user')->first());
+        $user->roles()->attach(Role::where('name', 'user')->first());
         return $user;
     }
 

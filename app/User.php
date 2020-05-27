@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Permissions;
+use App\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function roles()
     {
-        return $this->belongsToMany(Permissions::class)->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     public function authorizeRoles($roles)
