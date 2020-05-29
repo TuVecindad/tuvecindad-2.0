@@ -7,7 +7,11 @@ use App\Community;
 use App\User;
 
 class CommunityController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,7 @@ class CommunityController extends Controller
     {
         $communities = Community::paginate(10)->onEachSide(5);
 
-        $users = User::all();
+        $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
 
         return view('dashboard.communities.index', compact('communities', 'users'));
     }
