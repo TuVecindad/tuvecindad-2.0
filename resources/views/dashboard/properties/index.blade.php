@@ -36,11 +36,6 @@
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
-                    <form action="{{ route('properties.create', $community->id)}}" method="post" class="mb-0">
-                        @csrf
-                        @method('PUSH')
-                        <button class="btn btn-danger" type="submit">Añadir propiedades</button>
-                    </form>
                 </td>
             </tr>
             @endforeach
