@@ -27,7 +27,7 @@ class UsersController extends Controller
         $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
         return view('dashboard.users.index', compact('users'));
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *

@@ -17,7 +17,7 @@ class CommunityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $communities = Community::paginate(10)->onEachSide(5);
 
