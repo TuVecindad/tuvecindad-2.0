@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Community;
+use App\Property;
 use App\User;
 
 class CommunityController extends Controller

@@ -21,4 +21,5 @@ Route::resource('users', 'UsersController');
 
 Route::resource('communities', 'CommunityController');
 
+Route::resource('property', 'PropertyController');
 Auth::routes(['verify' => true]);

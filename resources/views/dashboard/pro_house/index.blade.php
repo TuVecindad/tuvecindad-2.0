@@ -37,9 +37,9 @@
                 <td>{{$property->created_at}}</td>
                 <td>{{$property->updated_at}}</td>
 
-                <td><a href="{{ route('properties.edit', $property->id)}}" class="btn btn-primary">Editar</a></td>
+                <td><a href="{{ route('property.edit', $property->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
-                    <form action="{{ route('properties.destroy', $property->id)}}" method="post" class="mb-0">
+                    <form action="{{ route('property.destroy', $property->id)}}" method="post" class="mb-0">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Eliminar</button>
@@ -53,7 +53,7 @@
 </div>
 <div id="pagination" class="d-flex row">
     {{ $properties->links() }}
-    <a href="{{ route('properties.create')}}" class="btn btn-success mb-1 align-self-start">Añadir propiedad</a>
+    <a href="{{ route('property.create')}}" class="btn btn-success mb-1 align-self-start">Añadir propiedad</a>
 </div>
 
 

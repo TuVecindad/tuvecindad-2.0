@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Community;
-use App\Property;
-use App\User;
 
-class PropertyController extends Controller
+class Pro_houseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +14,6 @@ class PropertyController extends Controller
     public function index()
     {
         //
-        $properties = Property::paginate(10)->onEachSide(5);
-
-        $users = User::all();
-
-        return view('dashboard.properties.index', compact('property', 'users'));
     }
 
     /**
@@ -32,7 +24,6 @@ class PropertyController extends Controller
     public function create()
     {
         //
-        return view('dashboard.properties.create');
     }
 
     /**
@@ -43,13 +34,7 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //       
-        $validatedData = ([
-            'cad_ref_pro' => 'required|unique:property|max:255',
-            'owner' => 'required|max:255',
-            'tenant' => 'required|max:255',
-            'house'=>'boleean',
-        ]);
+        //
     }
 
     /**
@@ -95,9 +80,5 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function __construct()
-    {
-         $this->middleware('auth');
     }
 }

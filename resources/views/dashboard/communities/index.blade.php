@@ -36,12 +36,14 @@
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
-                    <form action="{{ route('properties.create', $community->id)}}" method="post" class="mb-0">
+                </td>
+                <td><form action="{{ route('properties.create', $community->id)}}" method="post" class="mb-0">
                         @csrf
-                        @method('PUSH')
-                        <button class="btn btn-danger" type="submit">Añadir propiedades</button>
+                        @method('PUT')
+                        <button class="btn btn-info" type="submit">Añadir propiedades</button>
                     </form>
                 </td>
+             
             </tr>
             @endforeach
         </tbody>
