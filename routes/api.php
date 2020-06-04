@@ -18,9 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:api')->get('/community', function (Request $request) {
-    return $request->user();
+    return $request->all();
 });
 Route::middleware('auth:api')->get('/property', function (Request $request) {
-    return $request->user();
+    return $request->all();
 });
 

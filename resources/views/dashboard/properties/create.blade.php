@@ -15,7 +15,7 @@
             </ul>
         </div><br />
         @endif
-        <form method="post" action="{{ route('properties.store') }}">
+        <form method="post" action="{{ route('property.store') }}">
             <div class="form-group">
                 @csrf
                 <label for="cad_ref_pro">Referencia catastral</label>

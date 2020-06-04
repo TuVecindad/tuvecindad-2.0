@@ -37,9 +37,9 @@
                 <td>{{$property->created_at}}</td>
                 <td>{{$property->updated_at}}</td>
 
-                <td><a href="{{ route('properties.edit', $property->id)}}" class="btn btn-primary">Editar</a></td>
+                <td><a href="{{ route('property.edit', $property->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
-                    <form action="{{ route('properties.destroy', $property->id)}}" method="post" class="mb-0">
+                    <form action="{{ route('property.destroy', $property->id)}}" method="post" class="mb-0">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Eliminar</button>

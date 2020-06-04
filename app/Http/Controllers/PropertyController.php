@@ -17,7 +17,7 @@ class PropertyController extends Controller
     public function index()
     {
         //
-        $properties = Property::paginate(10)->onEachSide(5);
+        $property = Property::paginate(10)->onEachSide(5);
 
         $users = User::all();
 
@@ -32,6 +32,7 @@ class PropertyController extends Controller
     public function create()
     {
         //
+    
         return view('dashboard.properties.create');
     }
 
@@ -46,10 +47,15 @@ class PropertyController extends Controller
         //       
         $validatedData = ([
             'cad_ref_pro' => 'required|unique:property|max:255',
-            'owner' => 'required|max:255',
-            'tenant' => 'required|max:255',
-            'house'=>'boleean',
+            'owner' => 'max:255',
+            'tenant' => 'max:255',
+            'house_id'=>'boolean',
+            'parking_id'=>'boolean',
+            'storage_id'=>'boolean'
         ]);
+        $property = Property::create($this->validate($request, $validatedData));
+
+        return redirect('/property')->with('success', 'propiedad creada');
     }
 
     /**
