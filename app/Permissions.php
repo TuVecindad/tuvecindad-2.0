@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,7 +30,7 @@ class Permissions extends Model
     /**
      * @var array
      */
-    protected $fillable = ['add_user', 'del_user'];
+    //protected $fillable = ['add_user', 'del_user'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -38,4 +39,9 @@ class Permissions extends Model
     {
         return $this->hasMany('App\UsersCommunity', 'permissions');
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
 }
