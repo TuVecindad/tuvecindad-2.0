@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Community;
 use App\User;
+use App\Role;
 
 class CommunityController extends Controller
 {   
@@ -57,7 +58,11 @@ class CommunityController extends Controller
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
 
-        $community = Community::create($this->validate($request, $validatedData, $messages));
+        $communities = Community::create($this->validate($request, $validatedData, $messages));
+
+        $communities->users()->attach($communities->id);
+        
+        $user->roles()->attach(Role::where('name', 'admin')->first());
 
         return redirect('/communities')->with('success', 'Comunidad creada');
     }

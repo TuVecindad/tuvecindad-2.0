@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 /**
  * @property int $id
@@ -53,5 +54,10 @@ class Community extends Model
     public function usersCommunities()
     {
         return $this->hasMany('App\UsersCommunity', 'com_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }

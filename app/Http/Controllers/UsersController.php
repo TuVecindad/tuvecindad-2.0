@@ -24,7 +24,7 @@ class UsersController extends Controller
     // }
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
+        $request->user()->authorizeRoles(['superadmin', 'owner', 'admin', 'tenant']);
         return view('dashboard.users.index', compact('users'));
     }
  

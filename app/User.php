@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Role;
+use App\Community;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -73,6 +74,11 @@ class User extends Authenticatable implements MustVerifyEmail
             return true;
         }
         return false;
+    }
+
+    public function communities()
+    {
+        return $this->belongsToMany(Community::class)->withTimestamps();
     }
 
 }
