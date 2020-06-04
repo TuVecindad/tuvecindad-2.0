@@ -24,7 +24,7 @@ class CommunityController extends Controller
 
         $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
 
-        return view('dashboard.communities.index', compact('communities', 'users'));
+        return view('dashboard.communities.index', compact('communities'));
     }
 
     /**
@@ -60,9 +60,11 @@ class CommunityController extends Controller
 
         $communities = Community::create($this->validate($request, $validatedData, $messages));
 
-        $communities->users()->attach($communities->id);
+        $user = auth()->user();
+
+        $communities->users()->attach($user->id);
         
-        $user->roles()->attach(Role::where('name', 'admin')->first());
+        //$user->roles()->attach(Role::where('name', 'admin')->first());
 
         return redirect('/communities')->with('success', 'Comunidad creada');
     }
