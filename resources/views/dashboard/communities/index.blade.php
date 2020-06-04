@@ -2,11 +2,11 @@
 @section('content')
 <div class="uper table-responsive">
 
-    <!-- @if(session()->get('success'))
-    <div class="alert alert-success">
+    @if(session()->get('success'))
+    <div class="alert2 alert-success">
         {{ session()->get('success') }}
     </div><br />
-    @endif -->
+    @endif
     <table class="table table-striped text-nowrap">
         <thead>
             <tr>

@@ -10897,6 +10897,12 @@ a.text-dark:focus {
   vertical-align: middle;
 }
 
+.alert2 {
+  padding: 0.25rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
 @media (max-width: 576px) {
   #scroll, .overflow-hidden {
     overflow: visible !important;
