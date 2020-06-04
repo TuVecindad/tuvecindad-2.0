@@ -3,7 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
+use App\Community;
+use App\ProHouse;
+use App\ProParking;
+use App\ProStorage;
 /**
  * @property int $id
  * @property int $com_id
@@ -61,7 +65,7 @@ class Property extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user_tenant()
     {
         return $this->belongsTo('App\User', 'tenant');
     }
@@ -69,7 +73,7 @@ class Property extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user_owner()
     {
         return $this->belongsTo('App\User', 'owner');
     }

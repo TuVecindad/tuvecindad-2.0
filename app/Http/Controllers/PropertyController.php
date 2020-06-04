@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Community;
 use App\Property;
 use App\User;
+use App\ProStorage;
+use App\ProHouse;
+use App\ProParking;
 
 class PropertyController extends Controller
 {
@@ -32,7 +35,8 @@ class PropertyController extends Controller
     public function create()
     {
         //
-    
+        $property = Property::paginate(10)->onEachSide(5);
+
         return view('dashboard.properties.create');
     }
 
@@ -102,8 +106,8 @@ class PropertyController extends Controller
     {
         //
     }
-    public function __construct()
-    {
-         $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //      $this->middleware('auth');
+    // }
 }

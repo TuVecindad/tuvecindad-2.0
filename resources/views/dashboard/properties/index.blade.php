@@ -24,16 +24,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($properties as $property)
+            @foreach($property as $property)
             <tr>
                 <td>{{$property->id}}</td>
                 <td>{{$property->cad_ref_pro}}</td>
                 <td>{{$property->com_id}}</td>
-                <td>{{porperty->owner}}</td>
-                <td>{{porperty->tenant}}</td>
-                <td>{{porperty->house_id}}</td>
-                <td>{{porperty->parking_id}}</td>
-                <td>{{porperty->storage_id}}</td>
+                <td>{{$porperty->owner}}</td>
+                <td>{{$porperty->tenant}}</td>
+                <td>{{$porperty->house_id}}</td>
+                <td>{{$porperty->parking_id}}</td>
+                <td>{{$porperty->storage_id}}</td>
                 <td>{{$property->created_at}}</td>
                 <td>{{$property->updated_at}}</td>
 
@@ -52,8 +52,8 @@
 
 </div>
 <div id="pagination" class="d-flex row">
-    {{ $properties->links() }}
-    <a href="{{ route('properties.create')}}" class="btn btn-success mb-1 align-self-start">Añadir propiedad</a>
+    {{ $property->links() }}
+    <a href="{{ route('property.create')}}" class="btn btn-success mb-1 align-self-start">Añadir propiedad</a>
 </div>
 
 
