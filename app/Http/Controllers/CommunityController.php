@@ -5,21 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Community;
 use App\User;
+use App\Role;
 
 class CommunityController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $communities = Community::paginate(10)->onEachSide(5);
 
-        $users = User::all();
+        $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
 
-        return view('dashboard.communities.index', compact('communities', 'users'));
+        return view('dashboard.communities.index', compact('communities'));
     }
 
     /**
@@ -53,7 +58,13 @@ class CommunityController extends Controller
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
 
-        $community = Community::create($this->validate($request, $validatedData, $messages));
+        $communities = Community::create($this->validate($request, $validatedData, $messages));
+
+        $user = auth()->user();
+
+        $communities->users()->attach($user->id);
+        
+        //$user->roles()->attach(Role::where('name', 'admin')->first());
 
         return redirect('/communities')->with('success', 'Comunidad creada');
     }

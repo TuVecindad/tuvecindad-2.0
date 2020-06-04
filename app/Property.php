@@ -58,21 +58,21 @@ class Property extends Model
         return $this->belongsTo('App\ProHouse', 'house_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'tenant');
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  */
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User', 'tenant');
+    // }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'owner');
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  */
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User', 'owner');
+    // }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
