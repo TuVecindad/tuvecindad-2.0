@@ -64,8 +64,6 @@ class CommunityController extends Controller
 
         $communities->users()->attach($user->id);
         
-        //$user->roles()->attach(Role::where('name', 'admin')->first());
-
         return redirect('/communities')->with('success', 'Comunidad creada');
     }
 
@@ -106,7 +104,7 @@ class CommunityController extends Controller
 
         $communities = Community::all();
 
-        $validatedData = ([
+        $validatedData = $request->validate([
             'cad_ref_com' => 'required|unique:communities,cad_ref_com,' . $id .'|max:255',
             'address' => 'required|max:255',
             'apart_num' => 'required|max:255'
@@ -119,7 +117,7 @@ class CommunityController extends Controller
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
 
-        $this->validate($request, $validatedData, $messages);
+        Community::whereId($id)->update($validatedData);
 
         return redirect('/communities')->with('success', 'Comunidad editada');
     }

@@ -10,7 +10,7 @@
             @include('includes.header')
         </div>
         <div>
-
+            @yield('content')
         </div>
         <div class="row bottom bg-dark m-0">
             @include('includes.footer')

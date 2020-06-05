@@ -24,6 +24,7 @@ class UsersController extends Controller
     // }
     public function index(Request $request)
     {
+        $users = User::all();
         $request->user()->authorizeRoles(['superadmin', 'owner', 'admin', 'tenant']);
         return view('dashboard.users.index', compact('users'));
     }

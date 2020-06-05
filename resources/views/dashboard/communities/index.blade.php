@@ -19,8 +19,13 @@
                 <td colspan="2">Acción</td>
             </tr>
         </thead>
+        {{-- @foreach(Auth::user()->communities as $community)
+
+        {{ dd($community) }}
+
+        @endforeach --}}
         <tbody>
-            @foreach($communities as $community)
+            @foreach(Auth::user()->communities as $community)
             <tr>
                 <td>{{$community->id}}</td>
                 <td>{{$community->cad_ref_com}}</td>
@@ -29,6 +34,7 @@
                 <td>{{$community->created_at}}</td>
                 <td>{{$community->updated_at}}</td>
 
+                @if(auth()->user()->hasRole('admin'))
                 <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
                     <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
@@ -37,6 +43,7 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
+                @endif
             </tr>
             @endforeach
         </tbody>
