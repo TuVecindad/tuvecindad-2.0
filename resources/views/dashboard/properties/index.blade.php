@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($property as $property)
+            @foreach(/*Auth::user()->*/$property as $property)
             <tr>
                 <td>{{$property->id}}</td>
                 <td>{{$property->cad_ref_pro}}</td>
@@ -37,6 +37,14 @@
                 <td>{{$property->created_at}}</td>
                 <td>{{$property->updated_at}}</td>
 
+        {{--         <td>
+                    <select class="mdb-select md-form" searchable=" Comunidad..">
+                        @foreach($communities as $comunity)
+                        <option value="{{community->id}}"{{$property->com_id}}::{{community->address}}</option>
+                        @endforeach
+                    </select>
+                </td> --}}
+
                 <td><a href="{{ route('property.edit', $property->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
                     <form action="{{ route('property.destroy', $property->id)}}" method="post" class="mb-0">
@@ -45,6 +53,7 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
+
             </tr>
             @endforeach
         </tbody>

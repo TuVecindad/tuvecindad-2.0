@@ -28,6 +28,10 @@
                 <input type="text" class="form-control" name="cad_ref_pro" value="{{ $property->cad_ref_pro }}" />
             </div>
             <div class="form-group">
+                <label for="com_id">Comunidad</label>
+                <input type="text" class="form-control" name="com_id" value="{{ $property->com_id }}"/>
+            </div>
+            <div class="form-group">
                 <label for="owner">Propietario</label>
                 <input type="text" class="form-control" name="owner" value="{{ $property->owner }}" />
             </div>

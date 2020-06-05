@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Search;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use App\User;
 use App\Community;
 use App\ProHouse;
@@ -24,11 +27,11 @@ use App\ProStorage;
  * @property User $user
  * @property Community $community
  */
-class Property extends Model
+class Property extends Model implements Searchable
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'property';
@@ -85,4 +88,19 @@ class Property extends Model
     {
         return $this->belongsTo('App\Community', 'com_id');
     }
+
+     public function getSearchResult(): SearchResult
+     {
+        $url = route('comunnities.show', $this->slug);
+
+         return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->id,
+            $url
+         );
+         $searchResults = (new Search())
+   ->registerModel(Community::class, ['id', 'address'])
+   ->search('');
+     }
+}
 }

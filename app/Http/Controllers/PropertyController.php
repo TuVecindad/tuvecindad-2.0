@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Spatie\Searchable\Search;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 use Illuminate\Http\Request;
 use App\Community;
@@ -46,16 +49,26 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request/*, $com_id, $house_id, $parking_id, $storage_id*/)
     {
-        //       
+        /*
+        $comunity=Community::find($com_id);
+        $parking=ProParking::find($parking_id);
+        $storage=ProStorage::find($storage_id);
+        $house=ProHouse::find($house_id);
+
+        $searchResults = (new Search())
+        ->registerModel(Community::class, ['id', 'address'])
+        ->search('');*/
+
         $validatedData = ([
             'cad_ref_pro' => 'required|unique:property|max:255',
-            'owner' => 'max:255',
+            'com_id'=>'$comunity',
+            'owner'=> 'max:255',
             'tenant' => 'max:255',
-            'house_id'=>'boolean',
-            'parking_id'=>'boolean',
-            'storage_id'=>'boolean'
+            'house_id'=>'$house',
+            'parking_id'=>'$parking',
+            'storage_id'=>'$storage'
         ]);
         $property = Property::create($this->validate($request, $validatedData));
 

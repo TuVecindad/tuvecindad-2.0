@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($communities as $community)
+            @foreach(/*Auth::user()->*/$communities as $community)
             <tr>
                 <td>{{$community->id}}</td>
                 <td>{{$community->cad_ref_com}}</td>
@@ -37,13 +37,11 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
-                <td><form action="{{ route('property.create', $community->id)}}" method="post" class="mb-0">
-                        @csrf
-                        @method('PUT')
-                        <button class="btn btn-info" type="submit">Añadir propiedades</button>
-                    </form>
+                <td>
+                    <a href="{{ route('property.create')}}" class="btn btn-info mb-1 align-self-start">Añadir propiedades</a>
+
                 </td>
-             
+
             </tr>
             @endforeach
         </tbody>
