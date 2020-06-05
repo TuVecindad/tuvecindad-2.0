@@ -16,7 +16,7 @@
         <a class="navbar-brand p-0" href="{{ route('users.edit', Auth::id()) }}">Dashboard</a>
 
         <a class="navbar-brand p-0" href="{{ route('logout') }}"  data-toggle="modal" data-target="#exampleModal">
-            {{ __('Logout') }}
+            {{ __('Desconectar') }}
         </a>
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

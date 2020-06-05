@@ -137,4 +137,36 @@ class CommunityController extends Controller
 
         return redirect('/communities')->with('success', 'Comunidad eliminada');
     }
+
+    public function adduser($id)
+    {
+        $community = Community::findOrFail($id);
+
+        return view('dashboard.communities.adduser', compact('community'));
+    }
+
+    public function storeuser(Request $request)
+    {
+
+        $messages = [
+            'community_id' => 'El campo "Comunidad" es necesario.',
+            'email.unique' => 'El mail ya esta en uso.',
+            'email.required' => 'El campo "Mail de usuario" es necesario.',
+            'role_id' => 'El campo "Rol" es necesario.',
+        ];
+
+        $validatedData =  $request->validate([
+            'community_id' => 'required|max:255',
+            'email' => 'required|max:255',
+            'role_id' => 'required|max:255'
+        ], $messages);
+
+        $email = User::select('id')->where('email', $request['email'])->first()->id;
+        
+        $users = User::find($email);
+        
+        $users->communities()->attach($request['community_id'],['role_id' => $request['role_id']]);
+
+        return redirect('/communities')->with('success', 'Usuario agregado');
+    }
 }

@@ -31,12 +31,7 @@
                 <td>{{$community->created_at}}</td>
                 <td>{{$community->updated_at}}</td>
 
-                <td>
-                    <form action="{{ route('communities.edit', $community->id)}}" method="get" class="mb-0">
-                        @csrf
-                        <button class="btn btn-primary" type="submit">Editar</button>
-                    </form>
-                </td>
+                <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
                     <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
@@ -44,13 +39,7 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
-                <td>
-                    <form action="{{ route('communities.edit', $community->id)}}" method="post" class="mb-0">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-success" type="submit">Agregar</button>
-                    </form>
-                </td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>
             </tr>
             @endforeach
 
@@ -66,12 +55,8 @@
                 <td>{{$community->updated_at}}</td>
 
                 @if(auth()->user()->hasRoleCommunity($community->id,2))
-                <td>
-                    <form action="{{ route('communities.edit', $community->id)}}" method="get" class="mb-0">
-                        @csrf
-                        <button class="btn btn-primary" type="submit">Editar</button>
-                    </form>
-                </td>
+
+                <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
                     <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
@@ -79,27 +64,11 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
-                <td>
-                    <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Agregar</button>
-                    </form>
-                </td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>
                 @else
-                <td>
-                    <form action="{{ route('communities.edit', $community->id)}}" method="get" class="mb-0">
-                        @csrf
-                        <button class="btn btn-primary" type="submit" disabled title='No eres administrador' >Editar</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0" title='No eres administrador'>
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit" disabled>Eliminar</button>
-                    </form>
-                </td>
+                <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
+                <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>
+                <td><a href="#" class="btn btn-success disabled">Agregar</a></td>
                 @endif
             </tr>
             @endforeach
@@ -111,7 +80,9 @@
 </div>
 <div id="pagination" class="d-flex row justify-content-around">
     {{ $communities->links() }}
+    @if(auth()->user()->hasRole('superadmin') or auth()->user()->hasRole('admin'))
     <a href="{{ route('communities.create')}}" class="btn btn-success mb-1 align-self-start">Añadir comunidad</a>
+    @endif
 </div>
 
 
