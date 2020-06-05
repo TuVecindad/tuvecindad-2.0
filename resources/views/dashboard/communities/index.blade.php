@@ -16,7 +16,7 @@
                 <td>Apartamentos</td>
                 <td>Creado</td>
                 <td>Actualizado</td>
-                <td colspan="2">Acción</td>
+                <td colspan="3">Acción</td>
             </tr>
         </thead>
         <tbody>
@@ -31,12 +31,24 @@
                 <td>{{$community->created_at}}</td>
                 <td>{{$community->updated_at}}</td>
 
-                <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
+                <td>
+                    <form action="{{ route('communities.edit', $community->id)}}" method="get" class="mb-0">
+                        @csrf
+                        <button class="btn btn-primary" type="submit">Editar</button>
+                    </form>
+                </td>
                 <td>
                     <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Eliminar</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ route('communities.addUser', $community->id)}}" method="post" class="mb-0">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-success" type="submit">Agregar</button>
                     </form>
                 </td>
             </tr>
@@ -52,9 +64,14 @@
                 <td>{{$community->apart_num}}</td>
                 <td>{{$community->created_at}}</td>
                 <td>{{$community->updated_at}}</td>
-                
+
                 @if(auth()->user()->hasRoleCommunity($community->id,2))
-                <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
+                <td>
+                    <form action="{{ route('communities.edit', $community->id)}}" method="get" class="mb-0">
+                        @csrf
+                        <button class="btn btn-primary" type="submit">Editar</button>
+                    </form>
+                </td>
                 <td>
                     <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
@@ -62,10 +79,22 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
-                @elseif(auth()->user()->hasRole('admin'))
-                <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary" disabled>Editar</a></td>
                 <td>
                     <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Agregar</button>
+                    </form>
+                </td>
+                @else
+                <td>
+                    <form action="{{ route('communities.edit', $community->id)}}" method="get" class="mb-0">
+                        @csrf
+                        <button class="btn btn-primary" type="submit" disabled title='No eres administrador' >Editar</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0" title='No eres administrador'>
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit" disabled>Eliminar</button>
