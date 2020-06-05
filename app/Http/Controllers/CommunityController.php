@@ -8,7 +8,7 @@ use App\User;
 use App\Role;
 
 class CommunityController extends Controller
-{   
+{
     public function __construct()
     {
         $this->middleware('auth');
@@ -22,7 +22,7 @@ class CommunityController extends Controller
     {
         $communities = Community::paginate(10)->onEachSide(5);
 
-        $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
+        $request->user()->authorizeRoles(['superadmin', 'owner', 'admin', 'tenant']);
 
         return view('dashboard.communities.index', compact('communities'));
     }
@@ -63,7 +63,7 @@ class CommunityController extends Controller
         $user = auth()->user();
 
         $communities->users()->attach($user->id);
-        
+
         return redirect('/communities')->with('success', 'Comunidad creada');
     }
 
