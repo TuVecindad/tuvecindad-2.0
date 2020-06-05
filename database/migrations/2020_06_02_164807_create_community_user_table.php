@@ -19,8 +19,7 @@ class CreateCommunityUserTable extends Migration
             //clave foránea de tabla users
             $table->unsignedBigInteger('user_id');
             //claves foranea permissions
-            //$table->unsignedBigInteger('role_id');
-//            $table->string('permissions_id')->unsigned();
+            $table->unsignedBigInteger('role_id')->default(2);
             //created updated
             $table->timestamps();
         });

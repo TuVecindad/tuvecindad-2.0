@@ -17,7 +17,7 @@ class AlterUsersPropertyTable extends Migration
               //claves foránea dentro de la tabla userproperty y las tablas que apuntan
             $table->foreign('prop_id')->references('id')->on('property')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('permissions_id')->references('id')->on('permissions')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 

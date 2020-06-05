@@ -31,7 +31,12 @@
                 <td>{{$community->updated_at}}</td>
 
                 @if(auth()->user()->hasRole('admin'))
-                <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
+                <td>
+                    <form action="{{ route('communities.edit', $community->id)}}" method="post" class="mb-0">
+                        @csrf
+                        {{-- @method('POST') --}}
+                        <button class="btn btn-info" type="submit">Eliminar</button>
+                    </form>
                 <td>
                     <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
