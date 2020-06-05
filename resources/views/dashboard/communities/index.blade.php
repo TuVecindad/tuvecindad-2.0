@@ -19,11 +19,7 @@
                 <td colspan="2">Acción</td>
             </tr>
         </thead>
-        {{-- @foreach(Auth::user()->communities as $community)
 
-        {{ dd($community) }}
-
-        @endforeach --}}
         <tbody>
             @foreach(Auth::user()->communities as $community)
             <tr>
