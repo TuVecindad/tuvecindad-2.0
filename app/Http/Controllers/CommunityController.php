@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Community;
 use App\User;
-use App\Role;
 
 class CommunityController extends Controller
-{   
+{
     public function __construct()
     {
         $this->middleware('auth');
@@ -20,9 +19,13 @@ class CommunityController extends Controller
      */
     public function index(Request $request)
     {
-        $communities = Community::paginate(10)->onEachSide(5);
+        if ($request->user()->hasRole('superadmin')) {
+            $communities = Community::Paginate(10);
+        } else {
+            $communities = Community::simplePaginate(10);
+        }
 
-        $request->user()->authorizeRoles(['owner', 'admin', 'tenant']);
+        $request->user()->authorizeRoles(['superadmin', 'owner', 'admin', 'tenant']);
 
         return view('dashboard.communities.index', compact('communities'));
     }
@@ -63,8 +66,6 @@ class CommunityController extends Controller
         $user = auth()->user();
 
         $communities->users()->attach($user->id);
-        
-        //$user->roles()->attach(Role::where('name', 'admin')->first());
 
         return redirect('/communities')->with('success', 'Comunidad creada');
     }
@@ -106,20 +107,20 @@ class CommunityController extends Controller
 
         $communities = Community::all();
 
-        $validatedData = ([
-            'cad_ref_com' => 'required|unique:communities,cad_ref_com,' . $id .'|max:255',
-            'address' => 'required|max:255',
-            'apart_num' => 'required|max:255'
-        ]);
-
         $messages = [
             'cad_ref_com.required' => 'El campo "Referencia catastral" es necesario.',
             'cad_ref_com.unique' => 'La referencia catastral ya esta en uso.',
             'address.required' => 'El campo "Dirección" es necesario.',
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
+        
+        $validatedData =  $request->validate([
+            'cad_ref_com' => 'required|unique:communities,cad_ref_com,' . $id . '|max:255',
+            'address' => 'required|max:255',
+            'apart_num' => 'required|max:255'
+        ], $messages);
 
-        $this->validate($request, $validatedData, $messages);
+        Community::whereId($id)->update($validatedData);
 
         return redirect('/communities')->with('success', 'Comunidad editada');
     }

@@ -30,7 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','updated_at','created_at',
+        'password', 'remember_token', 'updated_at', 'created_at',
     ];
 
     /**
@@ -62,15 +62,23 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         } else {
             if ($this->hasRole($roles)) {
-                 return true; 
-            }   
+                return true;
+            }
         }
         return false;
     }
-    
+
     public function hasRole($role)
     {
         if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function hasRoleCommunity($id,$role)
+    {
+        if ($this->communities()->wherePivot('community_id', '=', $id)->wherePivot('role_id', '=', $role)->first()) {
             return true;
         }
         return false;
@@ -80,5 +88,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Community::class)->withTimestamps();
     }
-
 }

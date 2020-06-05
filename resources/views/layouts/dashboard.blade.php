@@ -19,12 +19,26 @@
                     <div class="collapse navbar-collapse sidebar">
                         <ul class="flex-column navbar-nav w-100 justify-content-between">
                             <!-- Usuario -->
+                            @if(auth()->user()->hasRole('superadmin'))
+                            <li class="nav-item">
+                                <a class="nav-link pl-0 dropdown-toggle text-nowrap" data-toggle="collapse" data-target=".user">
+                                    <i class="fa fa-address-card-o fa-fw"></i> <span class=""> Usuario</span>
+                                </a>
+                                <div class="collapse user" id="m1">
+                                    <ul class="flex-column nav">
+                                        <a class="nav-link px-0 text-truncate" href="{{ route('users.index') }}">Mostrar</a>
+                                        <a class="nav-link px-0 text-truncate" href="{{ route('users.edit', Auth::id()) }}">Editar</a>
+                                    </ul>
+                                </div>
+                            </li>
+                            @else
                             <li class="nav-item">
                                 <a class="nav-link pl-0" href="{{ route('users.edit', Auth::id()) }}"><i class="fa fa-heart-o fa-fw"></i> <span class="">Usuario</span></a>
                             </li>
+                            @endif
                             <!-- Comunidad -->
                             <li class="nav-item">
-                                <a class="nav-link pl-0 dropdown-toggle text-nowrap"data-toggle="collapse" data-target=".community">
+                                <a class="nav-link pl-0 dropdown-toggle text-nowrap" data-toggle="collapse" data-target=".community">
                                     <i class="fa fa-address-card-o fa-fw"></i> <span class=""> Comunidad</span>
                                 </a>
                                 <div class="collapse community" id="m1">
