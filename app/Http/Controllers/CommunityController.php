@@ -89,7 +89,6 @@ class CommunityController extends Controller
      */
     public function edit($id)
     {
-
         $community = Community::findOrFail($id);
 
         return view('dashboard.communities.edit', compact('community'));
@@ -137,34 +136,5 @@ class CommunityController extends Controller
         $community->delete();
 
         return redirect('/communities')->with('success', 'Comunidad eliminada');
-    }
-
-    public function addUser()
-    {
-        return view('dashboard.communities.addUser');
-    }
-
-    public function storeUser(Request $request, $id)
-    {
-        $validatedData = ([
-            'cad_ref_com' => 'required|unique:communities|max:255',
-            'address' => 'required|max:255',
-            'apart_num' => 'required|max:255'
-        ]);
-
-        $messages = [
-            'cad_ref_com.required' => 'El campo "Referencia catastral" es necesario.',
-            'cad_ref_com.unique' => 'La referencia catastral ya esta en uso.',
-            'address.required' => 'El campo "Dirección" es necesario.',
-            'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
-        ];
-
-        $communities = Community::create($this->validate($request, $validatedData, $messages));
-
-        $user = auth()->user();
-
-        $communities->users()->attach($user->id);
-
-        return redirect('/communities')->with('success', 'Comunidad creada');
     }
 }

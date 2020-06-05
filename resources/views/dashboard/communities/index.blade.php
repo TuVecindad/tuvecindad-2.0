@@ -45,7 +45,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="{{ route('communities.addUser', $community->id)}}" method="post" class="mb-0">
+                    <form action="{{ route('communities.edit', $community->id)}}" method="post" class="mb-0">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-success" type="submit">Agregar</button>
