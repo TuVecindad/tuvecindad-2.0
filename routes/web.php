@@ -26,4 +26,3 @@ Route::post('communities/adduser', 'CommunityController@storeuser')->name('commu
 Route::resource('communities', 'CommunityController');
 
 Auth::routes(['verify' => true]);
-
