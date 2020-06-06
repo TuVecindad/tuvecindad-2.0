@@ -22,3 +22,4 @@ Route::resource('users', 'UsersController');
 Route::resource('communities', 'CommunityController');
 
 Auth::routes(['verify' => true]);
+
