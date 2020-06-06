@@ -48,14 +48,6 @@ class Community extends Model
         return $this->hasMany('App\Property', 'com_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function usersCommunities()
-    {
-        return $this->hasMany('App\UsersCommunity', 'com_id');
-    }
-
     public function users()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
