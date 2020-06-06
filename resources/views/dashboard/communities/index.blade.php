@@ -14,9 +14,14 @@
                 <td>Referencia catastral</td>
                 <td>Dirección</td>
                 <td>Apartamentos</td>
-                <td>Creado</td>
-                <td>Actualizado</td>
-                <td colspan="3">Acción</td>
+                <!-- CommonArea -->
+                <td>Piscina</td>
+                <td>Gimnasio</td>
+                <td>Portero</td>
+                <td>Azotea</td>
+                <td>Jardin</td>
+
+                <td colspan="4">Acción</td>
             </tr>
         </thead>
         <tbody>
@@ -30,16 +35,22 @@
                 <td>{{$community->apart_num}}</td>
                 <td>{{$community->created_at}}</td>
                 <td>{{$community->updated_at}}</td>
+                <td>{{$community->convert('pool')}}</td>
+                <td>{{$community->convert('gym')}}</td>
+                <td>{{$community->convert('hall')}}</td>
+                <td>{{$community->convert('rooftop')}}</td>
+                <td>{{$community->convert('garden')}}</td>
 
                 <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
-                    <!-- <form id="remove-form" action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
+                    <button class="btn btn-danger white" type="submit" data-toggle="modal" data-target="#removeModal">Eliminar</button>
+                    <form id="remove-form" action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
-                        @method('DELETE') -->
-                    <a class="btn btn-danger" type="submit" data-toggle="modal" data-target="#removeModal">Eliminar</a>
-                    <!-- </form> -->
+                        @method('DELETE')
+                    </form>
                 </td>
-                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Propiedad</a></td>
             </tr>
             @endforeach
 
@@ -51,8 +62,11 @@
                 <td>{{$community->cad_ref_com}}</td>
                 <td>{{$community->address}}</td>
                 <td>{{$community->apart_num}}</td>
-                <td>{{$community->created_at}}</td>
-                <td>{{$community->updated_at}}</td>
+                <td>{{$community->convert('pool')}}</td>
+                <td>{{$community->convert('gym')}}</td>
+                <td>{{$community->convert('hall')}}</td>
+                <td>{{$community->convert('rooftop')}}</td>
+                <td>{{$community->convert('garden')}}</td>
 
                 @if(auth()->user()->hasRoleCommunity($community->id,2))
                 <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
@@ -63,11 +77,13 @@
                         @method('DELETE')
                     </form>
                 </td>
-                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Propiedad</a></td>
                 @else
                 <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
                 <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>
-                <td><a href="#" class="btn btn-success disabled">Agregar</a></td>
+                <td><a href="#" class="btn btn-success disabled">Usuario</a></td>
+                <td><a href="#" class="btn btn-success disabled">Propiedad</a></td>
                 @endif
             </tr>
             @endforeach

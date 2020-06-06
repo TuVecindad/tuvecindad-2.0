@@ -27,7 +27,7 @@ class CommonArea extends Model
      * 
      * @var string
      */
-    protected $primaryKey = 'com_id';
+    protected $primaryKey = 'id';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -39,7 +39,7 @@ class CommonArea extends Model
     /**
      * @var array
      */
-    protected $fillable = ['pool', 'gym', 'hall', 'rooftop', 'garden'];
+    protected $fillable = ['com_id','pool', 'gym', 'hall', 'rooftop', 'garden'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -48,4 +48,5 @@ class CommonArea extends Model
     {
         return $this->belongsTo('App\Community', 'com_id');
     }
+
 }
