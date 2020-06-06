@@ -213,6 +213,7 @@ sudo composer require laravelcollective/html{
                 "words"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-29T15:13:26+00:00"
 =======
             "funding": [
@@ -229,6 +230,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-05-11T11:25:59+00:00"
 >>>>>>> master
         },
@@ -1292,6 +1295,7 @@ sudo composer require laravelcollective/html{
                 "storage"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-18T15:13:39+00:00"
 =======
             "funding": [
@@ -1300,6 +1304,8 @@ sudo composer require laravelcollective/html{
                     "type": "other"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-05-12T20:33:44+00:00"
 >>>>>>> master
         },
@@ -1469,6 +1475,7 @@ sudo composer require laravelcollective/html{
                 "time"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-24T18:27:52+00:00"
 =======
             "funding": [
@@ -1481,6 +1488,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-05-12T19:53:34+00:00"
 >>>>>>> master
         },
@@ -2341,6 +2350,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-30T20:35:19+00:00"
 =======
             "funding": [
@@ -2357,6 +2367,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-03-30T11:42:42+00:00"
 >>>>>>> master
         },
@@ -2411,6 +2423,7 @@ sudo composer require laravelcollective/html{
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2020-05-20T17:43:50+00:00"
         },
@@ -2474,6 +2487,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-03-27T16:56:45+00:00"
 >>>>>>> master
         },
@@ -2533,6 +2548,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony ErrorHandler Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-30T20:35:19+00:00"
 =======
             "funding": [
@@ -2549,6 +2565,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-03-30T14:14:32+00:00"
 >>>>>>> master
         },
@@ -2623,6 +2641,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-20T17:43:50+00:00"
 =======
             "funding": [
@@ -2639,6 +2658,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-03-27T16:56:45+00:00"
 >>>>>>> master
         },
@@ -2748,6 +2769,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-20T17:43:50+00:00"
 =======
             "funding": [
@@ -2764,6 +2786,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-03-27T16:56:45+00:00"
 >>>>>>> master
         },
@@ -2827,6 +2851,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-24T12:18:07+00:00"
 =======
             "funding": [
@@ -2843,6 +2868,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-18T20:50:06+00:00"
 >>>>>>> master
         },
@@ -2944,6 +2971,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-31T06:14:18+00:00"
 =======
             "funding": [
@@ -2960,6 +2988,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-28T18:53:25+00:00"
 >>>>>>> master
         },
@@ -3025,6 +3055,7 @@ sudo composer require laravelcollective/html{
                 "mime-type"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-25T12:33:44+00:00"
 =======
             "funding": [
@@ -3041,6 +3072,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-17T03:29:44+00:00"
 >>>>>>> master
         },
@@ -3629,6 +3662,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-30T20:35:19+00:00"
 =======
             "funding": [
@@ -3645,6 +3679,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-15T15:59:10+00:00"
 >>>>>>> master
         },
@@ -3725,6 +3761,7 @@ sudo composer require laravelcollective/html{
                 "url"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-30T20:35:19+00:00"
 =======
             "funding": [
@@ -3741,6 +3778,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-21T21:02:50+00:00"
 >>>>>>> master
         },
@@ -3950,6 +3989,7 @@ sudo composer require laravelcollective/html{
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-30T20:35:19+00:00"
 =======
             "funding": [
@@ -3966,6 +4006,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-12T16:45:47+00:00"
 >>>>>>> master
         },
@@ -4101,6 +4143,7 @@ sudo composer require laravelcollective/html{
                 "dump"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-30T20:35:19+00:00"
 =======
             "funding": [
@@ -4117,6 +4160,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-12T16:45:47+00:00"
 >>>>>>> master
         },
@@ -4232,6 +4277,7 @@ sudo composer require laravelcollective/html{
                 "environment"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-23T09:43:32+00:00"
 =======
             "funding": [
@@ -4244,6 +4290,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-05-02T14:08:57+00:00"
 >>>>>>> master
         },
@@ -4294,6 +4342,7 @@ sudo composer require laravelcollective/html{
                 "php"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-26T06:40:44+00:00"
 =======
             "funding": [
@@ -4314,6 +4363,8 @@ sudo composer require laravelcollective/html{
                     "type": "tidelift"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-03-13T01:23:26+00:00"
 >>>>>>> master
         }
@@ -5536,6 +5587,7 @@ sudo composer require laravelcollective/html{
                 "xunit"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-05-22T13:51:52+00:00"
 =======
             "funding": [
@@ -5548,6 +5600,8 @@ sudo composer require laravelcollective/html{
                     "type": "github"
                 }
             ],
+=======
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             "time": "2020-04-23T04:39:42+00:00"
 >>>>>>> master
         },
@@ -6332,6 +6386,5 @@ sudo composer require laravelcollective/html{
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

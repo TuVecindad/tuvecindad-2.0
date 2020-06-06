@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\CommonArea;
 use Illuminate\Http\Request;
 use App\Community;
 use App\Property;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -49,10 +51,19 @@ class CommunityController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = ([
+        $validatedCommunity = ([
             'cad_ref_com' => 'required|unique:communities|max:255',
             'address' => 'required|max:255',
             'apart_num' => 'required|max:255'
+        ]);
+
+        $validatedCommon = ([
+            'com_id' => 'max:255',
+            'pool' => 'max:255',
+            'gym' => 'max:255',
+            'hall' => 'max:255',
+            'rooftop' => 'max:255',
+            'garden' => 'max:255'
         ]);
 
         $messages = [
@@ -62,13 +73,17 @@ class CommunityController extends Controller
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
 
-        $communities = Community::create($this->validate($request, $validatedData, $messages));
+        $communities = Community::create($this->validate($request, $validatedCommunity, $messages));
+
+        $request->merge(['com_id' => $communities->id]);
+        
+        $commonArea = CommonArea::create($this->validate($request, $validatedCommon, $messages));
 
         $user = auth()->user();
 
         $communities->users()->attach($user->id);
 
-        return redirect('/communities')->with('success', 'Comunidad creada');
+        return redirect('/communities')->with('success','Comunidad creada.' );
     }
 
     /**
@@ -91,6 +106,11 @@ class CommunityController extends Controller
     public function edit($id)
     {
         $community = Community::findOrFail($id);
+        $id = auth()->user()->id;
+
+        if ($community->users()->where('user_id', $id)->pluck('role_id')->first() != 2) {
+            User::find(Auth::id())->authorizeRoles(['superadmin']);
+        }
 
         return view('dashboard.communities.edit', compact('community'));
     }
@@ -106,6 +126,7 @@ class CommunityController extends Controller
     {
 
         $communities = Community::all();
+        $commonArea = CommonArea::where('com_id', $id);
 
         $messages = [
             'cad_ref_com.required' => 'El campo "Referencia catastral" es necesario.',
@@ -114,13 +135,24 @@ class CommunityController extends Controller
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
 
-        $validatedData =  $request->validate([
+        
+        $validatedCommunity =  $request->validate([
             'cad_ref_com' => 'required|unique:communities,cad_ref_com,' . $id . '|max:255',
             'address' => 'required|max:255',
             'apart_num' => 'required|max:255'
         ], $messages);
 
-        Community::whereId($id)->update($validatedData);
+        $validatedCommon = $request->validate([
+            'com_id' => 'unique:common_area,com_id,' . $commonArea->first()->id . '|max:255',
+            'pool' => 'max:255',
+            'gym' => 'max:255',
+            'hall' => 'max:255',
+            'rooftop' => 'max:255',
+            'garden' => 'max:255'
+        ]);
+
+        Community::whereId($id)->update($validatedCommunity);
+        $commonArea->update($validatedCommon);
 
         return redirect('/communities')->with('success', 'Comunidad editada');
     }
@@ -150,24 +182,28 @@ class CommunityController extends Controller
     {
 
         $messages = [
-            'community_id' => 'El campo "Comunidad" es necesario.',
+            'community_id.required' => 'El campo "Comunidad" es necesario.',
+            'community_id.unique' => 'El usuario ya existe en la comunidad.',
             'email.unique' => 'El mail ya esta en uso.',
             'email.required' => 'El campo "Mail de usuario" es necesario.',
-            'role_id' => 'El campo "Rol" es necesario.',
+            'role_id.required' => 'El campo "Rol" es necesario.',
         ];
 
-        $validatedData =  $request->validate([
-            'community_id' => 'required|max:255',
-            'email' => 'required|max:255',
-            'role_id' => 'required|max:255'
-        ], $messages);
+        $email = User::select('id')->where('email', $request['email'])->first();
 
-        $email = User::select('id')->where('email', $request['email'])->first()->id;
-        
-        $users = User::find($email);
-        
-        $users->communities()->attach($request['community_id'],['role_id' => $request['role_id']]);
+        if ($email === null) {
+            return redirect()->back()->with('error', 'El mail no existe');
+        } else {
+            $validatedData =  $request->validate([
+                'community_id' => 'required|unique:community_user,community_id,NULL,id,user_id,' . $email->id . '|max:255',
+                'email' => 'required|unique:community_user,user_id,NULL,id,community_id,' . $request['community_id'] . '|max:255',
+                'role_id' => 'required|max:255'
+            ], $messages);
 
-        return redirect('/communities')->with('success', 'Usuario agregado');
+            $email = $email->id;
+            $users = User::find($email);
+            $users->communities()->attach($request['community_id'], ['role_id' => $request['role_id']]);
+            return redirect()->back()->with('success', 'El usuario ' . $request['email'] . ' ha sido agregado.');
+        }
     }
 }

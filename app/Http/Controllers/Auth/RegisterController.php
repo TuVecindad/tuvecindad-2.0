@@ -33,12 +33,12 @@ class RegisterController extends Controller
      * @var string
      */
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/email/verify';
 
-    protected function redirectTo()
-    {
-        return '/users/' . auth()->user()->id . '/edit/';
-    }
+    //protected function redirectTo()
+    //{
+    //    return '/users/' . auth()->user()->id . '/edit/';
+    //}
 
     /**
      * Create a new controller instance.

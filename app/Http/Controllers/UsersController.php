@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -16,19 +17,14 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $users = User::all();
 
-    //     return view('dashboard.users.index', compact('users'));
-    // }
     public function index(Request $request)
     {
         $users = User::all();
         $request->user()->authorizeRoles(['superadmin']);
         return view('dashboard.users.index', compact('users'));
     }
- 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,6 +32,7 @@ class UsersController extends Controller
      */
     public function create()
     {
+        User::find(Auth::id())->authorizeRoles(['superadmin']);
         return view('dashboard.users.create');
     }
 
@@ -78,6 +75,10 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
+        if (Auth::id() != $id) {
+            User::find(Auth::id())->authorizeRoles(['superadmin']);
+        }
+        
         return view('dashboard.users.edit', compact('user'));
     }
 
@@ -101,7 +102,7 @@ class UsersController extends Controller
 
         User::whereId($id)->update($validatedData);
 
-        return redirect('/users/'.$id.'/edit')->with('success', 'User is successfully updated');
+        return redirect('/users/' . $id . '/edit')->with('success', 'User is successfully updated');
     }
 
     /**
