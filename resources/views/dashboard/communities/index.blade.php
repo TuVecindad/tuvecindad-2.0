@@ -16,7 +16,7 @@
                 <td>Apartamentos</td>
                 <td>Creado</td>
                 <td>Actualizado</td>
-                <td colspan="3">Acción</td>
+                <td colspan="4">Acción</td>
             </tr>
         </thead>
         <tbody>
@@ -39,12 +39,11 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
-                <td>
-                    <a href="{{ route('property.create')}}" class="btn btn-info mb-1 align-self-start">Añadir propiedades</a>
 
-                </td>
 
-                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
+
+                <td><a href="{{ route('property.create', $community->id)}}" class="btn btn-info mb-1 align-self-start">Propiedades</a></td>
             </tr>
             @endforeach
 
@@ -69,11 +68,13 @@
                         <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
-                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuarios</a></td>
+                <td><a href="{{ route('property.create', $community->id)}}" class="btn btn-info mb-1 align-self-start">Propiedades</a></td>
                 @else
                 <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
                 <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>
-                <td><a href="#" class="btn btn-success disabled">Agregar</a></td>
+                <td><a href="#" class="btn btn-success disabled">Usuario</a></td>
+                <td><a href="#" class="btn btn-info disabled">Propiedades</a></td>
                 @endif
             </tr>
             @endforeach
