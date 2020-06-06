@@ -7,7 +7,6 @@ use App\Role;
 use App\Http\Controllers\UsersController;
 use App\Providers\RouteServiceProvider;
 use App\User;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -77,13 +76,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
-
-        if ($data['premium'] == 0){
-            $user->roles()->attach(Role::where('name', 'admin')->first());
-        }else{
-            $user->roles()->attach(Role::where('name', 'owner')->first());
-        }
+        $user->roles()->attach(Role::where('name', 'owner')->first());
         return $user;
     }
 }
