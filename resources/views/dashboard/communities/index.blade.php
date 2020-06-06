@@ -33,11 +33,11 @@
 
                 <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
-                    <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
+                    <!-- <form id="remove-form" action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Eliminar</button>
-                    </form>
+                        @method('DELETE') -->
+                    <a class="btn btn-danger" type="submit" data-toggle="modal" data-target="#removeModal">Eliminar</a>
+                    <!-- </form> -->
                 </td>
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>
             </tr>
@@ -55,13 +55,12 @@
                 <td>{{$community->updated_at}}</td>
 
                 @if(auth()->user()->hasRoleCommunity($community->id,2))
-
                 <td><a href="{{ route('communities.edit', $community->id)}}" class="btn btn-primary">Editar</a></td>
                 <td>
-                    <form action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
+                    <button class="btn btn-danger white" type="submit" data-toggle="modal" data-target="#removeModal">Eliminar</button>
+                    <form id="remove-form" action="{{ route('communities.destroy', $community->id)}}" method="post" class="mb-0">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Agregar</a></td>

@@ -60,6 +60,7 @@
 
     </div>
     @include('includes.logout')
+    @include('includes.remove')
 </body>
 
 </html>

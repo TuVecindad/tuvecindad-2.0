@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Community;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -90,7 +91,12 @@ class CommunityController extends Controller
     public function edit($id)
     {
         $community = Community::findOrFail($id);
+        $id = auth()->user()->id;
 
+        if ($community->users()->where('user_id', $id)->pluck('role_id')->first() != 2) {
+            User::find(Auth::id())->authorizeRoles(['superadmin']);
+        } 
+    
         return view('dashboard.communities.edit', compact('community'));
     }
 
@@ -160,8 +166,7 @@ class CommunityController extends Controller
 
         if ($email === null) {
             return redirect()->back()->with('error', 'El mail no existe');
-        }
-        else {
+        } else {
             $validatedData =  $request->validate([
                 'community_id' => 'required|unique:community_user,community_id,NULL,id,user_id,' . $email->id . '|max:255',
                 'email' => 'required|unique:community_user,user_id,NULL,id,community_id,' . $request['community_id'] . '|max:255',

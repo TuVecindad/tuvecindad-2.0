@@ -16,7 +16,8 @@
         <div class="alert2 alert-danger mb-0">
             <ul class="mb-0">
                 <li>
-                    {{ session()->get('error') }}</li>
+                    {{ session()->get('error') }}
+                </li>
             </ul>
         </div><br />
         @endif
