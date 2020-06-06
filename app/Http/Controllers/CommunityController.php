@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Community;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -90,7 +91,12 @@ class CommunityController extends Controller
     public function edit($id)
     {
         $community = Community::findOrFail($id);
+        $id = auth()->user()->id;
 
+        if ($community->users()->where('user_id', $id)->pluck('role_id')->first() != 2) {
+            User::find(Auth::id())->authorizeRoles(['superadmin']);
+        } 
+    
         return view('dashboard.communities.edit', compact('community'));
     }
 
@@ -149,24 +155,28 @@ class CommunityController extends Controller
     {
 
         $messages = [
-            'community_id' => 'El campo "Comunidad" es necesario.',
+            'community_id.required' => 'El campo "Comunidad" es necesario.',
+            'community_id.unique' => 'El usuario ya existe en la comunidad.',
             'email.unique' => 'El mail ya esta en uso.',
             'email.required' => 'El campo "Mail de usuario" es necesario.',
-            'role_id' => 'El campo "Rol" es necesario.',
+            'role_id.required' => 'El campo "Rol" es necesario.',
         ];
 
-        $validatedData =  $request->validate([
-            'community_id' => 'required|max:255',
-            'email' => 'required|max:255',
-            'role_id' => 'required|max:255'
-        ], $messages);
+        $email = User::select('id')->where('email', $request['email'])->first();
 
-        $email = User::select('id')->where('email', $request['email'])->first()->id;
-        
-        $users = User::find($email);
-        
-        $users->communities()->attach($request['community_id'],['role_id' => $request['role_id']]);
+        if ($email === null) {
+            return redirect()->back()->with('error', 'El mail no existe');
+        } else {
+            $validatedData =  $request->validate([
+                'community_id' => 'required|unique:community_user,community_id,NULL,id,user_id,' . $email->id . '|max:255',
+                'email' => 'required|unique:community_user,user_id,NULL,id,community_id,' . $request['community_id'] . '|max:255',
+                'role_id' => 'required|max:255'
+            ], $messages);
 
-        return redirect('/communities')->with('success', 'Usuario agregado');
+            $email = $email->id;
+            $users = User::find($email);
+            $users->communities()->attach($request['community_id'], ['role_id' => $request['role_id']]);
+            return redirect()->back()->with('success', 'El usuario ' . $request['email'] . ' ha sido agregado.');
+        }
     }
 }
