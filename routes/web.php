@@ -19,6 +19,10 @@ Route::get('/', function () {
 
 Route::resource('users', 'UsersController');
 
+Route::get('communities/{community}/adduser', 'CommunityController@adduser')->name('communities.adduser');
+
+Route::post('communities/adduser', 'CommunityController@storeuser')->name('communities.storeuser');
+
 Route::resource('communities', 'CommunityController');
 
 Route::resource('property', 'PropertyController');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use App\Http\Controllers\UsersController;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -69,11 +70,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
+
+    protected function create(array $data) {
+        $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ($data['premium']==0){
+            $user->roles()->attach(Role::where('name', 'admin')->first());
+        }else{
+            $user->roles()->attach(Role::where('name', 'owner')->first());
+        }
+        return $user;
     }
 }

@@ -16,7 +16,9 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laraveles/spanish": "^1.4",
-        "spatie/laravel-searchable": "^1.6"
+        "spatie/laravel-searchable": "^1.6",
+        "laravelcollective/html": "^6.1",
+        "laraveles/spanish": "^1.4"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
