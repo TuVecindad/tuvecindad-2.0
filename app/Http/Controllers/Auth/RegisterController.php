@@ -35,23 +35,10 @@ class RegisterController extends Controller
 
     protected $redirectTo = '/email/verify';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // protected function redirectTo()
-    // {
-    //     return '/users/' . auth()->user()->id . '/edit/';
-    // }
-=======
-=======
->>>>>>> 8424eaa2a4c635449a1fdeb7b67f8077f402c3ae
     //protected function redirectTo()
     //{
     //    return '/users/' . auth()->user()->id . '/edit/';
     //}
-<<<<<<< HEAD
->>>>>>> 8424eaa2a4c635449a1fdeb7b67f8077f402c3ae
-=======
->>>>>>> 8424eaa2a4c635449a1fdeb7b67f8077f402c3ae
 
     /**
      * Create a new controller instance.
