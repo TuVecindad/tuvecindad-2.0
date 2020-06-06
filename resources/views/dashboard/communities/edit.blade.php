@@ -35,6 +35,29 @@
                 <label for="apart_num">Numero de apartamentos</label>
                 <input type="number" class="form-control" name="apart_num" value="{{ $community->apart_num }}" />
             </div>
+            <label>Zonas comunes</label>
+            <div class="form-group container">
+                <div class="row text-center">
+                    <label for="pool" class="col">Piscina</label>
+                    <label for="gym" class="col">Gimnasio</label>
+                    <label for="hall" class="col">Portero</label>
+                    <label for="rooftop" class="col">Azotea</label>
+                    <label for="garden" class="col">Jardin</label>
+                </div>
+                <div class="row">
+                    <input type="hidden" value="0" name="pool" />
+                    <input type="hidden" value="0" name="gym" />
+                    <input type="hidden" value="0" name="hall" />
+                    <input type="hidden" value="0" name="rooftop" />
+                    <input type="hidden" value="0" name="garden" />
+
+                    <input style="width: 30px;" type="checkbox" value="1" class="form-control m-0 col" name="pool" {{ $community->prueba('pool') }}/>
+                    <input style="width: 30px;" type="checkbox" value="1" class="form-control m-0 col" name="gym" {{ $community->prueba('gym') }}/>
+                    <input style="width: 30px;" type="checkbox" value="1" class="form-control m-0 col" name="hall" {{ $community->prueba('hall') }}/>
+                    <input style="width: 30px;" type="checkbox" value="1" class="form-control m-0 col" name="rooftop" {{ $community->prueba('rooftop') }}/>
+                    <input style="width: 30px;" type="checkbox" value="1" class="form-control m-0 col" name="garden" {{ $community->prueba('garden') }}/>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Update community</button>
         </form>
     </div>

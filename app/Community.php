@@ -52,4 +52,24 @@ class Community extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function convert($type)
+    {
+        $bool = $this->commonArea()->pluck($type);
+
+        $bool = $bool->first();
+
+        if ($bool == 0) {
+            return 'No';
+        } else {
+            return 'Si';
+        }
+    }
+
+    public function prueba($area)
+    {
+        if ($this->commonarea()->pluck($area)->first() == 1) {
+            return 'checked';
+        }
+    }
 }
