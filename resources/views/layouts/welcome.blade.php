@@ -12,7 +12,7 @@
         <div>
         @yield('content')
         </div>
-        <div class="row bottom bg-dark m-0">
+        <div class="row page-footer bottom bg-dark m-0">
             @include('includes.footer')
         </div>
     </div>

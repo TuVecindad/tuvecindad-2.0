@@ -3,7 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Searchable\Search;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
+use App\User;
+use App\Community;
+use App\ProHouse;
+use App\ProParking;
+use App\ProStorage;
 /**
  * @property int $id
  * @property int $com_id
@@ -20,11 +27,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $user
  * @property Community $community
  */
-class Property extends Model
+class Property extends Model implements Searchable
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'property';
@@ -58,21 +65,21 @@ class Property extends Model
         return $this->belongsTo('App\ProHouse', 'house_id');
     }
 
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    //  */
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User', 'tenant');
-    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user_tenant()
+    {
+        return $this->belongsTo('App\User', 'tenant');
+    }
 
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    //  */
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User', 'owner');
-    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user_owner()
+    {
+        return $this->belongsTo('App\User', 'owner');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -81,4 +88,19 @@ class Property extends Model
     {
         return $this->belongsTo('App\Community', 'com_id');
     }
+
+     public function getSearchResult(): SearchResult
+     {
+        $url = route('comunnities.show', $this->slug);
+
+         return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->id,
+            $url
+         );
+         $searchResults = (new Search())
+   ->registerModel(Community::class, ['id', 'address'])
+   ->search('');
+     }
+}
 }

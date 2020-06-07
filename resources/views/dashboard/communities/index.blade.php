@@ -14,6 +14,10 @@
                 <td>Referencia catastral</td>
                 <td>Dirección</td>
                 <td>Apartamentos</td>
+<<<<<<< HEAD
+                <td>Creado</td>
+                <td>Actualizado</td>
+=======
                 <!-- CommonArea -->
                 <td>Piscina</td>
                 <td>Gimnasio</td>
@@ -21,6 +25,7 @@
                 <td>Azotea</td>
                 <td>Jardin</td>
 
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
                 <td colspan="4">Acción</td>
             </tr>
         </thead>
@@ -49,8 +54,16 @@
                         @method('DELETE')
                     </form>
                 </td>
+<<<<<<< HEAD
+
+
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
+
+                <td><a href="{{ route('property.create', $community->id)}}" class="btn btn-info mb-1 align-self-start">Propiedades</a></td>
+=======
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Propiedad</a></td>
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
             </tr>
             @endforeach
 
@@ -77,13 +90,22 @@
                         @method('DELETE')
                     </form>
                 </td>
+<<<<<<< HEAD
+                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuarios</a></td>
+                <td><a href="{{ route('property.create', $community->id)}}" class="btn btn-info mb-1 align-self-start">Propiedades</a></td>
+=======
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Propiedad</a></td>
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
                 @else
                 <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
                 <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>
                 <td><a href="#" class="btn btn-success disabled">Usuario</a></td>
+<<<<<<< HEAD
+                <td><a href="#" class="btn btn-info disabled">Propiedades</a></td>
+=======
                 <td><a href="#" class="btn btn-success disabled">Propiedad</a></td>
+>>>>>>> b110d7540e61aefd03c412cafdc50c7c725b84e2
                 @endif
             </tr>
             @endforeach
