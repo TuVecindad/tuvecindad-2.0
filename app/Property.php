@@ -89,18 +89,5 @@ class Property extends Model implements Searchable
         return $this->belongsTo('App\Community', 'com_id');
     }
 
-     public function getSearchResult(): SearchResult
-     {
-        $url = route('comunnities.show', $this->slug);
+}
 
-         return new \Spatie\Searchable\SearchResult(
-            $this,
-            $this->id,
-            $url
-         );
-         $searchResults = (new Search())
-   ->registerModel(Community::class, ['id', 'address'])
-   ->search('');
-     }
-}
-}

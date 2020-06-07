@@ -76,7 +76,7 @@ class CommunityController extends Controller
         $communities = Community::create($this->validate($request, $validatedCommunity, $messages));
 
         $request->merge(['com_id' => $communities->id]);
-        
+
         $commonArea = CommonArea::create($this->validate($request, $validatedCommon, $messages));
 
         $user = auth()->user();
@@ -135,7 +135,7 @@ class CommunityController extends Controller
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
 
-        
+
         $validatedCommunity =  $request->validate([
             'cad_ref_com' => 'required|unique:communities,cad_ref_com,' . $id . '|max:255',
             'address' => 'required|max:255',
