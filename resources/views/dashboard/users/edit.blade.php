@@ -3,10 +3,14 @@
 @section('content')
 <div class="card scroll-card">
     <div class="card-header">
-        Update user
+        Actualizar datos
     </div>
     <div class="card-body pb-0">
-        @if ($errors->any())
+        @if(auth()->user()->hasRole('admin'))
+        <div class="alert alert-warning">
+            <p>Te quedan {{auth()->user()->diffDate()}} días de prueba del servicio premium</p>
+        </div><br />
+        @elseif ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -19,6 +23,7 @@
             {{ session()->get('success') }}
         </div><br />
         @endif
+
         <form method="post" action="{{ route('users.update', $user->id) }}">
             <div class="form-group">
                 <label for="email">Email:</label>

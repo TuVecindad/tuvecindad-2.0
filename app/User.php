@@ -7,6 +7,7 @@ use App\Community;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -88,4 +89,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Community::class)->withTimestamps();
     }
+    public function diffDate(){
+        $id = auth()->user()->id;
+
+        $created = auth()->user()->pluck('created_at')->first();
+        $date = Carbon::parse($created);
+        $now = Carbon::now();
+        $diffdate = $date->diffInDays($now);
+
+        return 30 - $diffdate;
+    }
+
 }
