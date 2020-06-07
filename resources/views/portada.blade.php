@@ -105,6 +105,17 @@
         </div>
 </div>
 
+<div class="row m-auto p-5 with-3d-shadow">
+    <div class="card border-light mb-3" style="max-width: 75rem;">
+        <div class="card-header"><h3>Quienes somos</h3></div>
+        <div class="card-body">
+          <h5 class="card-title">Tu Vecindad 2.0</h5>
+          <p class="card-text">Somos un equipo de desarrolladores que hemos implementado un software sencillo y económico para facilitar la gestión de comunidades desde una única aplicación web.<br/>
+               Podrá tramitar todas las actividades de las comunidades y condominios, desde la creación de una nueva comunidad, seguimiento de incidencias; hasta el cobro de los recibos de los propietarios por domiciliación bancaria.</p>
+        </div>
+
+</div>
+
 
 
 
