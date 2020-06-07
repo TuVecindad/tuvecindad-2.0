@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('portada');
 });
 
 Route::resource('users', 'UsersController');
@@ -25,4 +25,5 @@ Route::post('communities/adduser', 'CommunityController@storeuser')->name('commu
 
 Route::resource('communities', 'CommunityController');
 
+Route::resource('property', 'PropertyController');
 Auth::routes(['verify' => true]);
