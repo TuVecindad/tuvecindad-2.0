@@ -10916,3 +10916,31 @@ a.text-dark:focus {
     justify-content: center;
   }
 }
+
+/*** hover portada principal ***/
+.zoom {
+
+    transition: transform .2s; /* Animation */
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .zoom:hover {
+    opacity: 0.5;
+    -ms-transform: scale(1.05); /* IE 9 */
+    -webkit-transform: scale(1.05); /* Safari 3-8 */
+    transform: scale(1.05);
+  }
+
+.texto{
+    color: grey;
+    opacity: 0.8;
+    background-color: lightgrey;
+    width: 80%;
+    font-size: calc(1em + 1vh);
+
+
+}
+
+
