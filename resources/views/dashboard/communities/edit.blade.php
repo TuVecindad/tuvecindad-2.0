@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="apart_num">Numero de apartamentos</label>
-                <input type="number" class="form-control" name="apart_num" value="{{ $community->apart_num }}" />
+                <input type="number" class="form-control" name="apart_num" value="{{ $community->apart_num }}"/>
             </div>
             <label>Zonas comunes</label>
             <div class="form-group container">

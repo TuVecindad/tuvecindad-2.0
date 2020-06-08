@@ -34,7 +34,7 @@
             </ul>
         </div><br />
         @endif
-        <form method="post" action="{{ route('properties.store') }}">
+        <form method="post" action="{{ route('properties.store')}}">
             <input type="hidden" class="form-control" name="com_id" value="{{ $community->id }}" />
             <div class="form-group">
                 @csrf

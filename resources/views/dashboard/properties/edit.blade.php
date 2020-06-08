@@ -18,50 +18,80 @@
                 <li>{{ $error }}</li>
                 @endforeach
             </ul>
-        </div><br />
+        </div><br/>
         @endif
-        <form method="post" action="{{ route('property.update', $property->id) }}">
+        <form method="post" action="{{ route('properties.update', $property->id) }}">
             <div class="form-group">
                 @csrf
-                @method('PUT')
+                @method('PATCH')
                 <label for="cad_ref_pro">Referencia catastral</label>
-                <input type="text" class="form-control" name="cad_ref_pro" value="{{ $property->cad_ref_pro }}" />
+                <input type="text" class="form-control" name="cad_ref_pro" value="{{ $property->cad_ref_pro}}" disabled />
             </div>
             <div class="form-group">
-                <label for="com_id">Comunidad</label>
-                <input type="text" class="form-control" name="com_id" value="{{ $property->com_id }}"/>
+                <label for="owner">Mail del propietario</label>
+                <input type="email" class="form-control" name="owner" placeholder="No es necesario." value="{{$property->getMail($property->owner)}}" />
             </div>
             <div class="form-group">
-                <label for="owner">Propietario</label>
-                <input type="text" class="form-control" name="owner" value="{{ $property->owner }}" />
-            </div>
-            <div class="form-group">
-                <label for="tenant">Inquilino</label>
-                <input type="text" class="form-control" name="tenant" value="{{ $property->tenant }}"/>
-            </div>
-            <div class="form-group">
-                <label for="house_id">Tipo de propiedad Apartamento</label>
-                <select class="form-control" name="house_id">
-                    <option value="{{ $property->house_id}}">Si</option>
-                    <option value="{{ $property->house_id}}">No</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="parking_id">Tipo de propiedad Parking</label>
-                <select class="form-control" name="parking_id">
-                    <option value="{{ $property->parking_id}}">Si</option>
-                    <option value="{{ $property->parking_id}}">No</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="storage_id">Tipo de propiedad Almacen</label>
-                <select class="form-control" name="storage_id">
-                    <option value="{{ $property->storage_id}}">Si</option>
-                    <option value="{{ $property->storage_id}}">No</option>
-                </select>
+                <label for="tenant">Mail del inquilino</label>
+                <input type="email" class="form-control" name="tenant" placeholder="No es necesario." value="{{$property->getMail($property->tenant)}}" />
             </div>
 
-            <button type="submit" class="btn btn-primary">Actualizar comunidad</button>
+            <!-- House Form -->
+            @if($property->house_id != null)
+            <div class="align-self-center my-3">
+                {!! Form::Label('type', 'Tipo de inmueble: ','class="mb-0"') !!}
+                {{ Form::select('type', [ 'apartment' => 'Apartamento', 'duplex' => 'Duplex', 'bussiness' => 'Negocio']) }}
+            </div>
+            <div class="form-group">
+                <label for="floor">Piso</label>
+                <input type="num" class="form-control" name="floor" value="{{ $property->floor}}" />
+            </div>
+            <div class="form-group">
+                <label for="door">Puerta</label>
+                <input type="text" class="form-control" name="door" value="{{ $property->door}}" />
+            </div>
+            <div class="form-group">
+                <label for="sqm">M<sup>2</sup></label>
+                <input type="num" class="form-control" name="sqm" value="{{ $property->sqm}}" />
+            </div>
+            <div class="form-group">
+                <label for="room">Habitaciones</label>
+                <input type="num" class="form-control" name="room" value="{{ $property->room}}" />
+            </div>
+            <div class="form-group">
+                <label for="bathroom">Baños</label>
+                <input type="num" class="form-control" name="bathroom" value="{{ $property->bathroom}}" />
+            </div>
+            <div class="form-group">
+                <label for="occupants">Ocupantes</label>
+                <input type="num" class="form-control" name="occupants" value="{{ $property->occupants}}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Añadir propiedad</button>
+
+            <!-- Parking Form -->
+            @elseif($property->parking_id != null)
+            <div class="form-group">
+                <label for="num_p">Número</label>
+                <input type="num" class="form-control" name="num_p" value="{{ $property->getdata('parking','num_p')}}" />
+            </div>
+            <div class="form-group">
+                <label for="sqm_p">M<sup>2</sup></label>
+                <input type="num" class="form-control" name="sqm_p" value="{{ $property->getdata('parking','sqm_p')}}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Añadir propiedad</button>
+
+            <!-- Storage From -->
+            @elseif($property->property_id != null)
+            <div class="form-group">
+                <label for="num_s">Número</label>
+                <input type="num" class="form-control" name="num_s" value="{{ $property->getdata('storage','num_s')}}" />
+            </div>
+            <div class="form-group">
+                <label for="sqm_s">M<sup>2</sup></label>
+                <input type="num" class="form-control" name="sqm_s" value="{{ $property->getdata('storage','sqm_s')}}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Añadir propiedad</button>
+            @endif
         </form>
     </div>
 </div>

@@ -167,5 +167,16 @@ class Property extends Model
 
         return $data;
     }
+
+    public function getMail($id)
+    {
+        $email = User::where('id',$id)->first();
+
+        if ($email != null) {
+           return $email->email;
+        } else  {
+            return;
+        }
+    }
 }
 

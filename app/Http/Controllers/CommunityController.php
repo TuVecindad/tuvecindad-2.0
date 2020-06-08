@@ -54,7 +54,7 @@ class CommunityController extends Controller
         $validatedCommunity = ([
             'cad_ref_com' => 'required|unique:communities|max:255',
             'address' => 'required|max:255',
-            'apart_num' => 'required|max:255'
+            'apart_num' => 'required|max:255|integer|min:1'
         ]);
 
         $validatedCommon = ([
@@ -71,6 +71,7 @@ class CommunityController extends Controller
             'cad_ref_com.unique' => 'La referencia catastral ya esta en uso.',
             'address.required' => 'El campo "Dirección" es necesario.',
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
+            'apart_num.min' => 'El campo "Numero de apartamentos" tiene que ser al menos 1.',
         ];
 
         $communities = Community::create($this->validate($request, $validatedCommunity, $messages));
@@ -78,7 +79,7 @@ class CommunityController extends Controller
         $request->merge(['com_id' => $communities->id]);
 
         $commonArea = CommonArea::create($this->validate($request, $validatedCommon, $messages));
-
+ 
         $user = auth()->user();
 
         $communities->users()->attach($user->id);
@@ -133,13 +134,14 @@ class CommunityController extends Controller
             'cad_ref_com.unique' => 'La referencia catastral ya esta en uso.',
             'address.required' => 'El campo "Dirección" es necesario.',
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
+            'apart_num.min' => 'El campo "Numero de apartamentos" tiene que ser al menos 1.',
         ];
 
 
         $validatedCommunity =  $request->validate([
             'cad_ref_com' => 'required|unique:communities,cad_ref_com,' . $id . '|max:255',
             'address' => 'required|max:255',
-            'apart_num' => 'required|max:255|integer|min:0'
+            'apart_num' => 'required|max:255|integer|min:1'
         ], $messages);
 
         $validatedCommon = $request->validate([

@@ -18,6 +18,11 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         if ($request->user()->hasRole('superadmin')) {
@@ -72,7 +77,7 @@ class PropertyController extends Controller
 
                 $validatedHouse = ([
                     'floor' => 'required|max:255',
-                    'door' => 'unique:pro_house,door|required|max:255',
+                    'door' => 'required|max:255',
                     'sqm' => 'required|max:255',
                     'room' => 'required|max:255',
                     'bathroom' => 'required|max:255',
@@ -141,7 +146,7 @@ class PropertyController extends Controller
             ], $messages);
 
             $owner = User::find($owner);
-            if ($owner === Auth::user()->id) {
+            if ($owner->id === Auth::user()->id) {
                 $owner->properties()->attach($request['property_id'], ['role_id' => 2]);
             } else {
                 $owner->properties()->attach($request['property_id'], ['role_id' => $request['role_id']]);
@@ -159,13 +164,17 @@ class PropertyController extends Controller
             ], $messages);
 
             $tenant = User::find($tenant);
-            if ($tenant == Auth::user()->id) {
+            if ($tenant->id == Auth::user()->id) {
                 $tenant->properties()->attach($request['property_id'], ['role_id' => 2]);
             } else {
                 $tenant->properties()->attach($request['property_id'], ['role_id' => $request['role_id']]);
             }
         } else {
         }
+
+        $user = auth()->user();
+
+        $property->users()->attach($user->id, ['role_id' => 2]);
 
         return redirect('/communities')->with('success', 'Propiedad creada.');
     }
@@ -189,7 +198,13 @@ class PropertyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $property = Property::findOrFail($id);
+        $id = auth()->user()->id;
+
+        if ($property->users()->where('user_id', $id)->pluck('role_id')->first() === 4) {
+            User::find(Auth::id())->authorizeRoles(['superadmin']);
+        }
+        return view('dashboard.properties.edit', compact('property'));
     }
 
     /**
@@ -201,7 +216,116 @@ class PropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this_property = Property::where('id', $id)->first();
+        $request->merge(['cad_ref_pro' => $this_property->cad_ref_pro]);
+        $request->merge(['property_id' => $this_property->id]);
+
+        $owner = User::select('id')->where('email', $request['owner'])->first();
+        if ($owner != null) {
+            $owner = $owner->id;
+        } else {
+            $owner = null;
+        }
+        $request->merge(['owner' => $owner]);
+
+        $tenant = User::select('id')->where('email', $request['tenant'])->first();
+        if ($tenant != null) {
+            $tenant = $tenant->id;
+        } else {
+            $tenant = null;
+        }
+        $request->merge(['tenant' => $tenant]);
+
+
+        $messages = [
+            // 'cad_ref_com.required' => 'El campo "Referencia catastral" es necesario.',
+            // 'cad_ref_com.unique' => 'La referencia catastral ya esta en uso.',
+            // 'address.required' => 'El campo "Dirección" es necesario.',
+            // 'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
+        ];
+
+        if ($owner != null) {
+            $request->merge(['role_id' => 3]);
+            
+            $validatedData =  $request->validate([
+                'property_id' => 'required|max:255|unique:property_user,property_id,NULL,id,property_id,' .  $request['property_id'],
+                'owner' => 'required|max:255|unique:property_user,user_id,NULL,id,user_id,' .$owner,
+                'role_id' => 'required|max:255',
+            ], $messages);
+            
+            $owner = User::find($owner);
+            if ($owner->id == Auth::user()->id) {
+                $owner->properties()->attach($request['property_id'], ['role_id' => 2]);
+            } else {
+                $owner->properties()->attach($request['property_id'], ['role_id' => $request['role_id']]);
+            }
+        } else {
+            // EL mail no existe
+        }
+
+        if ($tenant != null) {
+            $request->merge(['role_id' => 4]);
+            $validatedData =  $request->validate([
+                'property_id' => 'required|max:255|unique:property_user,property_id,NULL,id,user_id,' . $tenant,
+                'tenant' => 'required|max:255|unique:property_user,user_id,NULL,user_id,id,property_id,' . $request['property_id'],
+                'role_id' => 'required|max:255'
+            ], $messages);
+
+            $tenant = User::find($tenant);
+            if ($tenant->id == Auth::user()->id) {
+                $tenant->properties()->attach($request['property_id'], ['role_id' => 2]);
+            } else {
+                $tenant->properties()->attach($request['property_id'], ['role_id' => $request['role_id']]);
+            }
+        } else {
+            // EL mail no existe
+        }
+
+        $validatedProperty = $request->validate([
+            'cad_ref_pro' => 'required|unique:property,cad_ref_pro,' . $this_property->id . '|max:255',
+            'com_id' => 'max:255',
+            'owner' => 'max:255',
+            'tenant' => 'max:255',
+            'house_id' => 'nullable|max:255',
+            'parking_id' => 'nullable|max:255',
+            'storage_id' => 'nullable|max:255'
+        ], $messages);
+
+        if ($this_property->house_id != null) {
+            $validatedHouse = $request->validate([
+                'floor' => 'required|max:255',
+                'door' => 'required|max:255',
+                'sqm' => 'required|max:255',
+                'room' => 'required|max:255',
+                'bathroom' => 'required|max:255',
+                'occupants' => 'required|max:255',
+                'type' => 'max:255'
+            ], $messages);
+
+            ProStorage::where('id', $this_property->house_id)->update($validatedHouse);
+            $request->merge(['parking_id' => $this_property->house_id]);
+        } elseif ($this_property->parking_id != null) {
+            $validatedParking = $request->validate([
+                'num_p' => 'required|max:255',
+                'sqm_p' => 'required|max:255'
+            ], $messages);
+
+
+            ProParking::where('id', $this_property->parking_id)->update($validatedParking);
+            $request->merge(['parking_id' => $this_property->parking_id]);
+        } elseif ($this_property->storage_id != null) {
+            $validatedStorage = $request->validate([
+                'num_s' => 'required|max:255',
+                'sqm_s' => 'required|max:255'
+            ], $messages);
+
+            ProStorage::where('id', $this_property->storage_id)->update($validatedStorage);
+            $request->merge(['parking_id' => $this_property->storage_id]);
+        }
+
+        Property::where('id', $id)->update($validatedProperty);
+        return redirect('/properties')->with('success', 'Propiedad actualizada.');
     }
 
     /**
