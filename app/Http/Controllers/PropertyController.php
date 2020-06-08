@@ -336,6 +336,9 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $property = Property::findOrFail($id);
+        $property->delete();
+
+        return redirect('/properties')->with('success', 'Propiedad eliminada');
     }
 }
