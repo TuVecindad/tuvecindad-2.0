@@ -10935,11 +10935,15 @@ a.text-dark:focus {
 
 .texto{
     color: grey;
-    opacity: 0.8;
+    opacity: 0.9;
     background-color: lightgrey;
     width: 80%;
     font-size: calc(1em + 1vh);
 
+}
+
+a,a:hover{
+    color: grey;
 
 }
 

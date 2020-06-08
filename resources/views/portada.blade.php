@@ -107,12 +107,45 @@
 
 <div class="row m-auto p-5 with-3d-shadow">
     <div class="card border-light mb-3" style="max-width: 75rem;">
-        <div class="card-header"><h3>Quienes somos</h3></div>
+        <div class="card-header"><h3>Quiénes somos</h3></div>
         <div class="card-body">
           <h5 class="card-title">Tu Vecindad 2.0</h5>
           <p class="card-text">Somos un equipo de desarrolladores que hemos implementado un software sencillo y económico para facilitar la gestión de comunidades desde una única aplicación web.<br/>
                Podrá tramitar todas las actividades de las comunidades y condominios, desde la creación de una nueva comunidad, seguimiento de incidencias; hasta el cobro de los recibos de los propietarios por domiciliación bancaria.</p>
+
         </div>
+    </div>
+
+
+</div>
+<div class="row m-auto p-5 with-3d-shadow">
+    <div class="card border-light mb-3" style="max-width: 75rem;">
+        <div class="card-header "><h3>Contacto</h3></div><br/>
+        <div class="d-flex flex-lg-nowrap">
+            <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3">
+            <div class="card-body m-3 p-5 zoom ">
+                <h5 class="card-title">Oficinas</h5>
+                <i style='font-size:50px' class='fas text-center m-2'>&#xf3c5;</i><br/>
+                <span>Avenida A Miró, 27, Ático A 07003 Palma de Mallorca, Illes Balears <br/>
+                    Horario: lunes a viernes de 9:00h a 18:00h</span>
+            </div>
+            </div>
+            <div class=" col xs-col-1 sm-col-6 md-col-6 lg-col-3">
+        <div class="card-body m-3 p-5 zoom">
+            <h5 class="card-title">Contáctar por correo</h5>
+            <i style='font-size:50px' class='fas text-center m-2'>	&#xf674;</i><br/>
+            <a href="mailto:tuvecindad.fb.moll@gmail.com?Subject=Informacion%20de%20el%20software">tuvecindad.fb.moll@gmail.com</a>
+        </div>
+    </div>
+        <div class=" col xs-col-1 sm-col-6 md-col-6 lg-col-3">
+        <div class="card-body m-3 p-5 zoom">
+            <h5 class="card-title">Contáctar por teléfono</h5>
+            <i style='font-size:50px' class='fas text-center m-2'>	&#xf1e4;</i><br/>
+
+            <a class="m-auto"href="tel:+34987654321">+34987654321</a>
+        </div>
+    </div>
+    </div>
 
 </div>
 
