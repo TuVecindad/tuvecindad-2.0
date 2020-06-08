@@ -104,7 +104,7 @@
         </div>
 </div>
 
-<div class="row m-auto p-5 with-3d-shadow">
+<div class="row m-auto p-5 with-3d-shadow justify-content-center">
     <div class="card border-light mb-3" style="max-width: 75rem;">
         <div class="card-header"><h3>Quiénes somos</h3></div>
         <div class="card-body">
@@ -117,12 +117,12 @@
 
 
 </div>
-<div class="row m-auto p-5 with-3d-shadow">
+<div class="row m-auto p-5 with-3d-shadow justify-content-center">
     <div class="card border-light mb-3" style="max-width: 75rem;">
         <div class="card-header "><h3>Contacto</h3></div><br/>
         <div class="row justify-content-around d-flex flex-lg-nowrap">
             <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">
-                <div class="card-body m-3 p-5 zoom ">
+                <div class="card-body m-3 p-5 zoom d-flex flex-column">
                     <h5 class="card-title">Oficinas</h5>
                     <i style='font-size:50px' class='fas text-center m-2'>&#xf3c5;</i><br/>
                     <span>Avenida A Miró, 27, Ático A 07003 Palma de Mallorca, Illes Balears <br/>
