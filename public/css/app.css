@@ -10119,12 +10119,30 @@ a.text-dark:focus {
     font-size: calc(1em + 1vh);
 }
 
-a,
-a:hover {
+a,a:hover {
     color: grey;
+    text-decoration: none;
+
+    }
+a:focus{
+    text-decoration: none;
 }
+
+a>.card{
+    color: black;
+}
+
+.form-control:focus,.btn:focus{
+    /* outline: none;
+    text-decoration: none;
+    transition: none; */
+    box-shadow: none !important;
+
+}
+
 
 .cookie-consent {
     color: white;
     margin: auto;
 }
+
