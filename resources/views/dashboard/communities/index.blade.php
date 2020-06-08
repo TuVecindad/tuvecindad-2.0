@@ -114,7 +114,7 @@
                             <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
                             <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>
                             <td><a href="#" class="btn btn-success disabled">Usuario</a></td>
-                            <td><a href="#" class="btn btn-success disabled">Propiedad</a></td>
+                            <td><a href="#" class="btn btn-info disabled">Propiedades</a></td>
 
             @endif
                         </tr>
@@ -128,11 +128,46 @@
 
         @else
             @if(auth()->user()->hasRole('superadmin') or auth()->user()->hasRole('admin'))
+<<<<<<< HEAD
                 <span style="color: red">No tienes comunidades, debes crear una</span>
                 
             <a href="{{ route('communities.create')}}" class="btn btn-success mb-1 align-self-start">Añadir comunidad</a>
             @else
                 <span style="color: red">No tienes ninguna comunidad asignada, contacta con un administrador para unirte a una</span>
+=======
+
+            <div class="card text-center">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">No tienes ninguna comunidad asignada</h5>
+                  <p class="card-text"> <span style="color: red">No tienes comunidades, debes crear una</span></p>
+
+
+                  <a href="{{ route('communities.create')}}" class="btn btn-success mb-1 align-self-start">Añadir comunidad</a>
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+              </div>
+
+            @else
+
+            <div class="card text-center">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">No tienes ninguna comunidad asignada</h5>
+                  <p class="card-text"><span style="color: red">Contacta con un administrador para unirte a una</span></p>
+                  </div>
+                <div class="card-footer text-muted">
+
+                </div>
+              </div>
+
+>>>>>>> 27bc82600ede178feee0655583f523dfc92c7b24
 
             @endif
         @endif
@@ -145,5 +180,12 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 27bc82600ede178feee0655583f523dfc92c7b24
 <script src="{{ asset('js/app.js') }}" type="text/js"></script>
 @endsection
