@@ -128,14 +128,6 @@
 
         @else
             @if(auth()->user()->hasRole('superadmin') or auth()->user()->hasRole('admin'))
-<<<<<<< HEAD
-                <span style="color: red">No tienes comunidades, debes crear una</span>
-                
-            <a href="{{ route('communities.create')}}" class="btn btn-success mb-1 align-self-start">Añadir comunidad</a>
-            @else
-                <span style="color: red">No tienes ninguna comunidad asignada, contacta con un administrador para unirte a una</span>
-=======
-
             <div class="card text-center">
                 <div class="card-header">
 
@@ -166,26 +158,9 @@
 
                 </div>
               </div>
-
->>>>>>> 27bc82600ede178feee0655583f523dfc92c7b24
-
             @endif
         @endif
-
     @endif
 </div>
-    
-
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 27bc82600ede178feee0655583f523dfc92c7b24
 <script src="{{ asset('js/app.js') }}" type="text/js"></script>
 @endsection
