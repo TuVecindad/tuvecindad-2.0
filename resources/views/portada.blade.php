@@ -38,22 +38,26 @@
 
 <div class="row m-4 p-4 d-flex flex-lg-nowrap justify-content-lg-around">
     <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">
+        <a href="{{ route('communities.create') }}">
         <div class="card m-3 p-3 zoom " style="width: 16rem;">
 
             <i style='font-size:80px' class='fas text-center m-2'>&#xf64f;</i>
                 <div class="card-body">
+
                     <h5 class="card-title">Alta de comunidad</h5>
                     <p class="card-text">Cree la ficha de la comunidad y propiedades de cada usuario</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Regístrese</li>
                     <li class="list-group-item">Cumplimente el formulario</li>
-                     <li class="list-group-item">Asigne propiedades</li>
+                    <li class="list-group-item">Asigne propiedades</li>
                 </ul>
         </div>
+    </a>
     </div>
 
     <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">
+          <a href="{{ route('communities.index') }}">
         <div class="card m-3 p-3 zoom " style="width: 16rem;">
 
             <i style='font-size:80px' class='fas text-center m-2'>&#xf0c0;</i>
@@ -68,6 +72,7 @@
             <li class="list-group-item">Asigne los usuarios</li>
              </ul>
      </div>
+          </a>
     </div>
 
       <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">
