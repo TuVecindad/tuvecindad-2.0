@@ -4,6 +4,7 @@ namespace App;
 
 use App\Role;
 use App\Community;
+use App\Property;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -84,8 +85,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
+    public function hasRoleProperty($id,$role)
+    {
+        if ($this->properties()->wherePivot('property_id', '=', $id)->wherePivot('role_id', '=', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+
     public function communities()
     {
         return $this->belongsToMany(Community::class)->withTimestamps();
+    }
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class)->withTimestamps();
     }
 }

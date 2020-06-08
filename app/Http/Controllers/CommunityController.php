@@ -75,14 +75,14 @@ class CommunityController extends Controller
         $communities = Community::create($this->validate($request, $validatedCommunity, $messages));
 
         $request->merge(['com_id' => $communities->id]);
-        
+
         $commonArea = CommonArea::create($this->validate($request, $validatedCommon, $messages));
 
         $user = auth()->user();
 
         $communities->users()->attach($user->id);
 
-        return redirect('/communities')->with('success','Comunidad creada.' );
+        return redirect('/communities')->with('success', 'Comunidad creada.');
     }
 
     /**
@@ -134,11 +134,11 @@ class CommunityController extends Controller
             'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
         ];
 
-        
+
         $validatedCommunity =  $request->validate([
             'cad_ref_com' => 'required|unique:communities,cad_ref_com,' . $id . '|max:255',
             'address' => 'required|max:255',
-            'apart_num' => 'required|max:255'
+            'apart_num' => 'required|max:255|integer|min:0'
         ], $messages);
 
         $validatedCommon = $request->validate([

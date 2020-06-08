@@ -23,7 +23,7 @@ class ProStorage extends Model
     /**
      * @var array
      */
-    protected $fillable = ['sqm', 'created_at', 'updated_at'];
+    protected $fillable = ['num_s','sqm_s', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

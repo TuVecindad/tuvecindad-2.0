@@ -50,7 +50,7 @@
                     </form>
                 </td>
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
-                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Propiedad</a></td>
+                <td><a href="{{ route('properties.create', $community->id)}}" class="btn btn-success">Propiedad</a></td>
             </tr>
             @endforeach
 
@@ -78,7 +78,7 @@
                     </form>
                 </td>
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
-                <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Propiedad</a></td>
+                <td><a href="{{ route('properties.create', $community->id)}}" class="btn btn-success">Propiedad</a></td>
                 @else
                 <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
                 <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>

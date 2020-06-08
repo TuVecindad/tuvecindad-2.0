@@ -23,7 +23,7 @@ class ProParking extends Model
     /**
      * @var array
      */
-    protected $fillable = ['sqm', 'created_at', 'updated_at'];
+    protected $fillable = ['num_p','sqm_p', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

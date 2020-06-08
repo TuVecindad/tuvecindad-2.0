@@ -25,4 +25,8 @@ Route::post('communities/adduser', 'CommunityController@storeuser')->name('commu
 
 Route::resource('communities', 'CommunityController');
 
+Route::resource('properties', 'PropertyController');
+
+Route::get('communities/{community}/property', 'PropertyController@create')->name('properties.create');
+
 Auth::routes(['verify' => true]);

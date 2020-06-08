@@ -22,7 +22,7 @@
                             @if(auth()->user()->hasRole('superadmin'))
                             <li class="nav-item">
                                 <a class="nav-link pl-0 dropdown-toggle text-nowrap" data-toggle="collapse" data-target=".user">
-                                    <i class="fa fa-address-card-o fa-fw"></i> <span class=""> Usuario</span>
+                                    <i class="fa fa-address-card-o fa-fw"></i> <span> Usuarios</span>
                                 </a>
                                 <div class="collapse user" id="m1">
                                     <ul class="flex-column nav">
@@ -33,13 +33,13 @@
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link pl-0" href="{{ route('users.edit', Auth::id()) }}"><i class="fa fa-heart-o fa-fw"></i> <span class="">Usuario</span></a>
+                                <a class="nav-link pl-0" href="{{ route('users.edit', Auth::id()) }}"><i class="fa fa-heart-o fa-fw"></i> <span>Usuario</span></a>
                             </li>
                             @endif
                             <!-- Comunidad -->
                             <li class="nav-item">
                                 <a class="nav-link pl-0 dropdown-toggle text-nowrap" data-toggle="collapse" data-target=".community">
-                                    <i class="fa fa-address-card-o fa-fw"></i> <span class=""> Comunidad</span>
+                                    <i class="fa fa-address-card-o fa-fw"></i> <span> Comunidades</span>
                                 </a>
                                 <div class="collapse community" id="m1">
                                     <ul class="flex-column nav">
@@ -47,6 +47,10 @@
                                         <a class="nav-link px-0 text-truncate" href="{{ route('communities.create') }}">Crear</a>
                                     </ul>
                                 </div>
+                            </li>
+                            <!-- Property -->
+                            <li class="nav-item">
+                                <a class="nav-link pl-0" href="{{ route('properties.index') }}"><i class="fa fa-heart-o fa-fw"></i> <span>Propiedades</span></a>
                             </li>
                         </ul>
                     </div>

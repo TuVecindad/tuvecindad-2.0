@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Stmt\Case_;
 
 /**
  * @property int $id
@@ -58,21 +59,26 @@ class Property extends Model
         return $this->belongsTo('App\ProHouse', 'house_id');
     }
 
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    //  */
-    // public function user()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    // public function tenant()
     // {
     //     return $this->belongsTo('App\User', 'tenant');
     // }
 
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    //  */
-    // public function user()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    // public function owner()
     // {
     //     return $this->belongsTo('App\User', 'owner');
     // }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -80,5 +86,82 @@ class Property extends Model
     public function community()
     {
         return $this->belongsTo('App\Community', 'com_id');
+    }
+
+    public function getData($type, $value)
+    {
+        switch ($type) {
+            case 'house':
+                switch ($value) {
+                    case 'floor':
+                        $data = ProHouse::findOrFail($this->house_id)->floor;
+                        break;
+
+                    case 'door':
+                        $data = ProHouse::findOrFail($this->house_id)->door;
+                        break;
+
+                    case 'sqm':
+                        $data = ProHouse::findOrFail($this->house_id)->sqm;
+                        break;
+
+                    case 'room':
+                        $data = ProHouse::findOrFail($this->house_id)->room;
+                        break;
+
+                    case 'bathroom':
+                        $data = ProHouse::findOrFail($this->house_id)->bathroom;
+                        break;
+
+                    case 'occupants':
+                        $data = ProHouse::findOrFail($this->house_id)->occupants;
+                        break;
+
+                    case 'type':
+                        $data = ProHouse::findOrFail($this->house_id)->type;
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+
+            case 'parking':
+                switch ($value) {
+                    case 'sqm_p':
+                        $data = ProParking::findOrFail($this->parking_id)->sqm_p;
+                        break;
+
+                    case 'num_p':
+                        $data = ProParking::findOrFail($this->parking_id)->num_p;
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+
+            case 'storage':
+                switch ($value) {
+                    case 'sqm_s':
+                        $data = ProStorage::findOrFail($this->storage_id)->sqm_s;
+                        break;
+
+                    case 'num_s':
+                        $data = ProStorage::findOrFail($this->storage_id)->num_s;
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+
+                break;
+
+            default:
+                break;
+        }
+
+        return $data;
     }
 }
