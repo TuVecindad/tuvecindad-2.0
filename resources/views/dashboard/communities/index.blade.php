@@ -114,7 +114,7 @@
                             <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
                             <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>
                             <td><a href="#" class="btn btn-success disabled">Usuario</a></td>
-                            <td><a href="#" class="btn btn-info disabled">Propiedades</a></td>
+                            <td><a href="#" class="btn btn-success disabled">Propiedad</a></td>
 
             @endif
                         </tr>
