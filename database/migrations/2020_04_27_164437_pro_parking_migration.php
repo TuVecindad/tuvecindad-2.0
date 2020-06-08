@@ -14,7 +14,9 @@ class ProParkingMigration extends Migration
     public function up()
     {
         Schema::create('pro_parking', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('num_p');
+            $table->integer('sqm_p');
             $table->timestamps();
         });
     }

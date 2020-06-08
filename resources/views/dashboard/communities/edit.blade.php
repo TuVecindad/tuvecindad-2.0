@@ -58,7 +58,7 @@
                     <input style="width: 30px;" type="checkbox" value="1" class="form-control m-0 col" name="garden" {{ $community->prueba('garden') }}/>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Update community</button>
+            <button type="submit" class="btn btn-primary">Actualizar comunidad</button>
         </form>
     </div>
 </div>

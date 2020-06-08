@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -78,7 +79,7 @@ class UsersController extends Controller
         if (Auth::id() != $id) {
             User::find(Auth::id())->authorizeRoles(['superadmin']);
         }
-        
+
         return view('dashboard.users.edit', compact('user'));
     }
 
@@ -102,7 +103,7 @@ class UsersController extends Controller
 
         User::whereId($id)->update($validatedData);
 
-        return redirect('/users/' . $id . '/edit')->with('success', 'User is successfully updated');
+        return redirect('/users/' . $id . '/edit')->with('success', 'Has introducido los datos correctamente');
     }
 
     /**
@@ -116,6 +117,44 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect('/users')->with('success', 'User is successfully deleted');
+        return redirect('/users')->with('success', 'El usuario ha sido borrado con éxito');
+    }
+
+    public function premium($id) {
+
+        $user = User::findOrFail($id);
+
+        if (Auth::id() != $id) {
+            User::find(Auth::id())->authorizeRoles(['superadmin']);
+        }
+
+
+        return view('dashboard.users.premium', compact('user'));
+    }
+
+    public function updatePremium(Request $request, $id){
+
+        $request['payment'] = Hash::make($request['payment']);
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'surname1' => 'required|max:255',
+            'surname2' => 'max:255',
+            'phone1' => 'required|max:255',
+            'phone2' => 'max:255',
+            'nif' => 'required|max:255',
+            'payment' => 'required|max:255',
+            'subscription_type' => 'required|max:255'
+        ]);
+
+
+        $user = User::whereId($id);
+
+        // $user->attach($request['subscription_type']);
+
+        $user->update($validatedData);
+
+        return redirect('/users/' . $id . '/premium')->with('success', 'La subscripción ' . $request['subscription_type'] . ' ha sido activada' .
+        ' correctamente');
     }
 }

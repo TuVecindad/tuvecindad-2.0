@@ -20,9 +20,9 @@ class ProHouseMigration extends Migration
             //metros cuadrados por superficie
             $table->integer('sqm');
             $table->integer('room');
-            $table->integer('bathoom');
+            $table->integer('bathroom');
             $table->integer('occupants');
-            //hacer un drobdown para selecionar(duplex,appartment,bussiness)
+            //hacer un dropdown para selecionar(duplex,appartment,bussiness)
             $table->string('type');
             $table->timestamps();
         });
