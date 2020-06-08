@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('portada');
 });
 
 Route::resource('users', 'UsersController');
+
+Route::get('users/{id}/premium', 'UsersController@premium')->name('users.premium');
+Route::patch('users/{id}/updatePremium','UsersController@updatePremium')->name('users.updatePremium');
 
 Route::get('communities/{community}/adduser', 'CommunityController@adduser')->name('communities.adduser');
 

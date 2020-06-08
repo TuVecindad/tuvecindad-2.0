@@ -14,14 +14,14 @@ class PropertyMigration extends Migration {
     public function up() {
         Schema::create('property', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cad_ref_pro');
+            $table->string('cad_ref_pro')->unique();
             //claves foraneas
             $table->unsignedBigInteger('com_id');
-            $table->integer('owner');
-            $table->integer('tenant');
-            $table->unsignedBigInteger('house_id');
-            $table->unsignedBigInteger('parking_id');
-            $table->unsignedBigInteger('storage_id');
+            $table->integer('owner')->nullable();
+            $table->integer('tenant')->nullable();
+            $table->unsignedBigInteger('house_id')->nullable();
+            $table->unsignedBigInteger('parking_id')->nullable();
+            $table->unsignedBigInteger('storage_id')->nullable();
             $table->timestamps();
         });
     }

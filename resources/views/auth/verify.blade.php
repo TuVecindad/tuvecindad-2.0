@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.welcome')
 
 @section('content')
 <div class="container">
@@ -20,6 +20,9 @@
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('haz click aquí para que te lo volvamos a enviar') }}</button>.
                     </form>
+                    <div>
+                        <a href="{{ route('users.edit', Auth::id()) }}" class="btn btn-primary float-right">Continuar sin verificar</a>
+                    </div>
                 </div>
             </div>
         </div>

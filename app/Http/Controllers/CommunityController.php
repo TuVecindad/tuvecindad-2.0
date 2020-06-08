@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CommonArea;
 use Illuminate\Http\Request;
 use App\Community;
+use App\Property;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 

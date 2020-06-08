@@ -15,7 +15,8 @@ class ProStorageMigration extends Migration
         Schema::create('pro_storage', function (Blueprint $table) {
             $table->bigIncrements('id');
             //metros cuadrados por superficie
-            $table->integer('sqm');
+            $table->integer('num_s');
+            $table->integer('sqm_s');
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     @include('includes.head')
 </head>
 
@@ -12,7 +13,7 @@
         <div>
         @yield('content')
         </div>
-        <div class="row bottom bg-dark m-0">
+        <div class="row page-footer fixed-bottom bg-dark m-0 d-flex">
             @include('includes.footer')
         </div>
     </div>

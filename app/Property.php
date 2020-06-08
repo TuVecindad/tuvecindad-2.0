@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Stmt\Case_;
-
+use App\User;
+use App\Community;
+use App\ProHouse;
+use App\ProParking;
+use App\ProStorage;
 /**
  * @property int $id
  * @property int $com_id
@@ -21,11 +24,11 @@ use PhpParser\Node\Stmt\Case_;
  * @property User $user
  * @property Community $community
  */
-class Property extends Model
+class Property extends Model 
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'property';
@@ -165,3 +168,4 @@ class Property extends Model
         return $data;
     }
 }
+

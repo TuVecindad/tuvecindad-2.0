@@ -14,13 +14,8 @@
                 <td>Referencia catastral</td>
                 <td>Dirección</td>
                 <td>Apartamentos</td>
-                <!-- CommonArea -->
-                <td>Piscina</td>
-                <td>Gimnasio</td>
-                <td>Portero</td>
-                <td>Azotea</td>
-                <td>Jardin</td>
-
+                <td>Creado</td>
+                <td>Actualizado</td>
                 <td colspan="4">Acción</td>
             </tr>
         </thead>
@@ -49,6 +44,8 @@
                         @method('DELETE')
                     </form>
                 </td>
+
+
                 <td><a href="{{ route('communities.adduser', $community->id)}}" class="btn btn-success">Usuario</a></td>
                 <td><a href="{{ route('properties.create', $community->id)}}" class="btn btn-success">Propiedad</a></td>
             </tr>
@@ -83,7 +80,8 @@
                 <td><a href="#" class="btn btn-primary disabled">Editar</a></td>
                 <td><a href="#" class="btn btn-danger disabled">Eliminar</a></td>
                 <td><a href="#" class="btn btn-success disabled">Usuario</a></td>
-                <td><a href="#" class="btn btn-success disabled">Propiedad</a></td>
+                <td><a href="#" class="btn btn-info disabled">Propiedades</a></td>
+
                 @endif
             </tr>
             @endforeach

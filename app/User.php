@@ -8,6 +8,7 @@ use App\Property;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -22,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
     //clave
     protected $primaryKey = 'id';
     protected $fillable = [
-        'email', 'name', 'nif', 'name', 'surname1', 'surname2', 'phone1', 'phone2', 'password'
+        'email', 'name', 'nif', 'name', 'surname1', 'surname2', 'phone1', 'phone2', 'password', 'payment'
     ];
 
     /**
@@ -103,4 +104,40 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Property::class)->withTimestamps();
     }
+
+    public function bulletin()
+    {
+        return $this->belongsToMany(Bulletin::class)->withTimestamps();
+    }
+
+    // /* Calcula diferencia de días desde el registro para controlar serv. premium */
+
+    public function diffDate(){
+        $id = auth()->user()->id;
+        $user = User::findOrFail($id);
+        $created = auth()->user()->where('id', $id)->pluck('created_at')->first();
+        $date = Carbon::parse($created);
+        $now = Carbon::now();
+        $diffdate = $now->diffInDays($date);
+        $restantes = 30 - $diffdate;
+        if ($restantes <= 0){
+            auth()->user()->roles()->update(['role_id' => 3]);
+            return redirect()->back()->with('error', 'Tu periodo de prueba ha caducado');
+        } else {
+            return $restantes;
+        }
+
+    }
+
+    public function hasSubscription(){
+
+        $id = auth()->user()->id;
+        $user = User::findOrFail($id);
+        $subs = $user->where('id', $id)->pluck('payment')->first();
+        if ($subs != null) {
+            return true;
+        }
+        return false;
+    }
+
 }
