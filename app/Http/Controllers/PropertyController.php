@@ -176,7 +176,7 @@ class PropertyController extends Controller
 
         $property->users()->attach($user->id, ['role_id' => 2]);
 
-        return redirect('/communities')->with('success', 'Propiedad creada.');
+        return redirect('/properties')->with('success', 'Propiedad creada.');
     }
 
     /**
