@@ -13,7 +13,11 @@
         <div>
         @yield('content')
         </div>
+        <div>
+            @include('cookieConsent::index')
+        </div>
         <div class="row page-footer fixed-bottom bg-dark m-0 d-flex">
+            @include('cookieConsent::index')
             @include('includes.footer')
         </div>
     </div>
