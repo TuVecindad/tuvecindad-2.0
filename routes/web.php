@@ -17,8 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('users', 'UsersController');
+
+Route::resource('communities', 'CommunityController');
+
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('properties', 'PropertyController');
 
-Route::get('/leerComunidades', 'CommunitiesController@index');
+Auth::routes(['verify' => true]);

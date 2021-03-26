@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UsersController;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller {
+class RegisterController extends Controller
+{
     /*
       |--------------------------------------------------------------------------
       | Register Controller
@@ -21,21 +24,28 @@ class RegisterController extends Controller {
       |
      */
 
-use RegistersUsers;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+
+    protected $redirectTo = '/';
+
+    protected function redirectTo()
+    {
+        return '/users/' . auth()->user()->id . '/edit/';
+    }
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest');
     }
 
@@ -45,16 +55,11 @@ use RegistersUsers;
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data) {
+    protected function validator(array $data)
+    {
         return Validator::make($data, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'surname1' => ['required', 'string', 'max:255'],
-                    'surname2' => ['required', 'string', 'max:255'],
-                    'phone1' => ['required', 'string', 'max:255'],
-                    'phone2' => ['required', 'string', 'max:255'],
-                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                    'nif' => ['required', 'string', 'max:255', 'unique:users'],
-                    'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
     }
 
@@ -64,17 +69,11 @@ use RegistersUsers;
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data) {
+    protected function create(array $data)
+    {
         return User::create([
-                    'name' => $data['name'],
-                    'surname1' => $data['surname1'],
-                    'surname2' => $data['surname2'],
-                    'nif' => $data['nif'],
-                    'phone1' => $data['phone1'],
-                    'phone2' => $data['phone2'],
-                    'email' => $data['email'],
-                    'password' => Hash::make($data['password']),
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
     }
-
 }

@@ -4,18 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ProParkingMigration extends Migration {
-
+class ProParkingMigration extends Migration
+{
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create('pro_parking', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            //metros cuadrados por superficie
-            $table->integer('sqm');
+            $table->id();
             $table->timestamps();
         });
     }
@@ -25,8 +24,8 @@ class ProParkingMigration extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists('pro_parking');
     }
-
 }
